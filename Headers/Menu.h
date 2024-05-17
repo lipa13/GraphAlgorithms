@@ -3,9 +3,12 @@
 
 class Menu
 {
+public:
     Menu();
-    void displayMenu();
-    int getChoice();
+    void displayMainMenu();
+    void displayMSTMenu();
+    void displayShortestPathMenu();
+    int getChoice(int n);
 };
 
 #endif //AIZO_PROJEKT_2_MENU_H
