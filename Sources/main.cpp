@@ -113,6 +113,7 @@ void chooseMainMenu()
 
 int main()
 {
+    srand(time(NULL));
     chooseMainMenu();
     return 0;
 }
