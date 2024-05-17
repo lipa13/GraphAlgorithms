@@ -2,14 +2,14 @@
 
 using namespace std;
 
-Graph::Graph():V(0), E(0) {}
+Graph::Graph():numV(0), numE(0) {}
 
-int Graph::getV()
+int Graph::getNumV()
 {
-    return V;
+    return numV;
 }
 
-int Graph::getE()
+int Graph::getNumE()
 {
-    return E;
+    return numE;
 }
