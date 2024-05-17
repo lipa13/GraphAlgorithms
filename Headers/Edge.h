@@ -3,6 +3,7 @@
 
 class Edge
 {
+public:
     int startV;
     int endV;
     int weight;
