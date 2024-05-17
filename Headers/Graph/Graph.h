@@ -20,6 +20,7 @@ public:
     virtual void generateRandom(int vertices, int d) = 0;
     int getV();
     int getE();
+    virtual bool isDirected() const = 0;
 };
 
 #endif //AIZO_PROJEKT_2_GRAPH_H
