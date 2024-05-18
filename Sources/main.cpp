@@ -1,10 +1,12 @@
 #include <iostream>
 
 #include "../Headers/Menu.h"
+#include "../Headers/Graph.h"
 
 using namespace std;
 
 Menu menu;
+Graph graphMST(false);
 
 void chooseShortestPathMenu()
 {
@@ -19,7 +21,7 @@ void chooseShortestPathMenu()
         }
         else if(choice==2)
         {
-            // wygenerowanie grafu losowo
+            // generowanie losowo grafu
         }
         else if(choice==3)
         {
@@ -59,10 +61,12 @@ void chooseMSTMenu()
         else if(choice==2)
         {
             // wygenerowanie grafu losowo
+            graphMST.generateRandom(10, 25);
         }
         else if(choice==3)
         {
             // wyswietl graf
+            graphMST.listGraph.listDisplay();
         }
         else if(choice==4)
         {
