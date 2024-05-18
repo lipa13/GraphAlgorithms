@@ -8,9 +8,9 @@ using namespace std;
 
 class Graph
 {
-    static int numV; // ilość wierzchołków
-    static int numE; // ilość krawędzi
-    static bool directed;
+    int numV; // ilość wierzchołków
+    int numE; // ilość krawędzi
+    bool directed;
 
     struct Edge
     {
@@ -26,8 +26,10 @@ class Graph
     {
         Edge** adjacencyList; // dynamiczna tablica dwuwymiarowa reprezentująca listę sąsiedztwa
         int* numberOfNeighbors;
+        int& numV;
+        bool& directed;
 
-        ListGraph()
+        ListGraph(int& vertices, bool& isDirected) : numV(vertices), directed(isDirected)
         {
             adjacencyList = nullptr;
             numberOfNeighbors = nullptr;

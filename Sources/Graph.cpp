@@ -2,13 +2,7 @@
 
 using namespace std;
 
-// Definicje statycznych zmiennych członkowskich
-int Graph::numV = 0;
-int Graph::numE = 0;
-bool Graph::directed = false;
-
-
-Graph::Graph(bool isDirected)
+Graph::Graph(bool isDirected): listGraph(numV, directed)
 {
     directed = isDirected;
     numV = 0;
