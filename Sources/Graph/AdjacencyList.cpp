@@ -40,6 +40,7 @@ Edge* AdjacencyList::getNeighbors(int V)
 void AdjacencyList:: display()
 {
     cout << endl;
+    cout << "Reperezentacja listowa\n";
 
     for(int i=0; i<numV; i++)
     {

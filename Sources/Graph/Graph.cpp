@@ -80,8 +80,6 @@ void Graph::generateRandom(int vertices, double d)
     numV = vertices;
     numE = static_cast<int>(d/100*vertices*(vertices-1)/2);
 
-    cout << numE;
-
     if(adjacencyList.data!=nullptr)
     {
         for(int i=0; i<numV; i++)

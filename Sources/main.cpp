@@ -7,6 +7,7 @@ using namespace std;
 
 Menu menu;
 Graph graphMST(false);
+Graph graphSPA(true);
 
 void chooseShortestPathMenu()
 {
@@ -22,10 +23,19 @@ void chooseShortestPathMenu()
         else if(choice==2)
         {
             // generowanie losowo grafu
+            graphSPA.generateRandom(10, 25);
         }
         else if(choice==3)
         {
             // wyswietl graf
+            if(graphSPA.adjacencyList.data!=nullptr)
+            {
+                graphSPA.adjacencyList.display();
+            }
+            else
+            {
+                cout << "\nNie wczytano jeszcze danych!!!\n";
+            }
         }
         else if(choice==4)
         {
@@ -66,7 +76,14 @@ void chooseMSTMenu()
         else if(choice==3)
         {
             // wyswietl graf
-            graphMST.adjacencyList.display();
+            if(graphMST.adjacencyList.data!=nullptr)
+            {
+                graphMST.adjacencyList.display();
+            }
+            else
+            {
+                cout << "\nNie wczytano jeszcze danych!!!\n";
+            }
         }
         else if(choice==4)
         {
