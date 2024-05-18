@@ -107,7 +107,7 @@ void Graph::generateRandom(int vertices, double d)
         {
             start = rand()%numV;
             end = rand()%numV;
-            w = rand()%numV;
+            w = rand()%numV+1;
 
             correct = isEdgeCorrect(start, end);
 

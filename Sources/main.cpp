@@ -19,11 +19,32 @@ void chooseShortestPathMenu()
         if(choice==1)
         {
             // wczytanie grafu z pliku
+            string path;
+            cout << "\nPodaj pelna sciezke pliku: ";
+            cin >> path;
+
+            if(!graphSPA.loadFromFile(path))
+            {
+                cout << "\nNie udalo sie wczytac danych.\n";
+            }
+            else
+            {
+                cout << "\nDane poprawnie wczytane.\n";
+            }
+
         }
         else if(choice==2)
         {
             // generowanie losowo grafu
-            graphSPA.generateRandom(10, 25);
+            int v;
+            double d;
+
+            cout << "\nPodaj liczbe wierzcholkow: ";
+            cin >> v;
+            cout << "Podaj gestosc grafu: ";
+            cin >> d;
+
+            graphSPA.generateRandom(v, d);
         }
         else if(choice==3)
         {
@@ -67,11 +88,33 @@ void chooseMSTMenu()
         if(choice==1)
         {
             // wczytanie grafu z pliku
+            string path;
+            cout << "\nPodaj pelna sciezke pliku: ";
+            cin >> path;
+
+            if(!graphMST.loadFromFile(path))
+            {
+                cout << "\nNie udalo sie wczytac danych.\n";
+                return;
+            }
+            else
+            {
+                cout << "\nDane poprawnie wczytane.\n";
+            }
+
         }
         else if(choice==2)
         {
             // wygenerowanie grafu losowo
-            graphMST.generateRandom(10, 25);
+            int v;
+            double d;
+
+            cout << "\nPodaj liczbe wierzcholkow: ";
+            cin >> v;
+            cout << "Podaj gestosc grafu: ";
+            cin >> d;
+
+            graphMST.generateRandom(v, d);
         }
         else if(choice==3)
         {
