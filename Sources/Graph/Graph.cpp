@@ -2,12 +2,7 @@
 
 using namespace std;
 
-Graph::Graph(bool isDirected): adjacencyList(numV, directed)
-{
-    directed = isDirected;
-    numV = 0;
-    numE = 0;
-}
+Graph::Graph(bool isDirected):directed(isDirected), numV(0), numE(0), adjacencyList(numV, directed) {}
 
 bool Graph::isEdgeCorrect(int s, int e)
 {
