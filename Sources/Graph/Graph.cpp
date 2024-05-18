@@ -1,8 +1,8 @@
-#include "../Headers/Graph.h"
+#include "../../Headers/Graph/Graph.h"
 
 using namespace std;
 
-Graph::Graph(bool isDirected): listGraph(numV, directed)
+Graph::Graph(bool isDirected): adjacencyList(numV, directed)
 {
     directed = isDirected;
     numV = 0;
@@ -19,12 +19,12 @@ bool Graph::isEdgeCorrect(int s, int e)
     }
     else
     {
-        for(int j=0; j<listGraph.numberOfNeighbors[j]; j++)
+        for(int j=0; j<adjacencyList.numberOfNeighbors[j]; j++)
         {
-            for(int k=0; k<listGraph.numberOfNeighbors[j]; k++)
+            for(int k=0; k<adjacencyList.numberOfNeighbors[j]; k++)
             {
-                if((listGraph.adjacencyList[j][k].startV==s && listGraph.adjacencyList[j][k].endV==e) ||
-                   (listGraph.adjacencyList[j][k].endV==s && listGraph.adjacencyList[j][k].startV==e))
+                if((adjacencyList.data[j][k].startV==s && adjacencyList.data[j][k].endV==e) ||
+                   (adjacencyList.data[j][k].endV==s && adjacencyList.data[j][k].startV==e))
                 {
                     correct=false;
                     break;
@@ -87,22 +87,22 @@ void Graph::generateRandom(int vertices, double d)
 
     cout << numE;
 
-    if(listGraph.adjacencyList!=nullptr)
+    if(adjacencyList.data!=nullptr)
     {
         for(int i=0; i<numV; i++)
         {
-            delete[] listGraph.adjacencyList[i];
+            delete[] adjacencyList.data[i];
         }
-        delete[] listGraph.adjacencyList;
-        delete[] listGraph.numberOfNeighbors;
+        delete[] adjacencyList.data;
+        delete[] adjacencyList.numberOfNeighbors;
     }
 
-    listGraph.adjacencyList = new Edge*[numV];
-    listGraph.numberOfNeighbors = new int[numV]();
+    adjacencyList.data = new Edge*[numV];
+    adjacencyList.numberOfNeighbors = new int[numV]();
 
     for(int i=0; i<numV; i++)
     {
-        listGraph.adjacencyList[i] = new Edge[numV-1];
+        adjacencyList.data[i] = new Edge[numV-1];
     }
 
     // Generowanie minimalnego drzewa rozpinającego
@@ -121,7 +121,7 @@ void Graph::generateRandom(int vertices, double d)
 
         }while(!correct);
 
-        listGraph.listAddEdge(start, end, w);
+        adjacencyList.addEdge(start, end, w);
     }
 
     // Dokładanie krawędzi do określonej gęstości
@@ -140,7 +140,7 @@ void Graph::generateRandom(int vertices, double d)
 
         }while(!correct);
 
-        listGraph.listAddEdge(start, end, w);
+        adjacencyList.addEdge(start, end, w);
     }
 }
 

@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "../Headers/Menu.h"
-#include "../Headers/Graph.h"
+#include "../Headers/Graph/Graph.h"
 
 using namespace std;
 
@@ -66,7 +66,7 @@ void chooseMSTMenu()
         else if(choice==3)
         {
             // wyswietl graf
-            graphMST.listGraph.listDisplay();
+            graphMST.adjacencyList.display();
         }
         else if(choice==4)
         {
