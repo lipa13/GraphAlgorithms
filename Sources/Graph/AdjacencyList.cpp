@@ -9,16 +9,32 @@ AdjacencyList::AdjacencyList(int& vertices, bool& isDirected) : numV(vertices), 
     numberOfNeighbors = nullptr;
 }
 
+void AdjacencyList::initList()
+{
+    data = new Edge*[numV];
+    numberOfNeighbors = new int[numV]();
+
+    for(int i=0; i<numV; i++)
+    {
+        data[i] = new Edge[numV-1];
+    }
+}
+
+void AdjacencyList::clearList()
+{
+    for(int i=0; i<numV; i++)
+    {
+        delete[] data[i];
+    }
+    delete[] data;
+    delete[] numberOfNeighbors;
+}
+
 AdjacencyList::~AdjacencyList()
 {
     if(data!=nullptr)
     {
-        for(int i=0; i<numV; i++)
-        {
-            delete[] data[i];
-        }
-        delete[] data;
-        delete[] numberOfNeighbors;
+        clearList();
     }
 }
 

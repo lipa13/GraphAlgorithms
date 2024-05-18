@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
 #include "AdjacencyList.h"
 #include "Edge.h"
 
@@ -19,7 +20,7 @@ public:
 
     Graph(bool isDirected);
     bool isEdgeCorrect(int s, int e);
-    void loadFromFile(string& path);
+    bool loadFromFile(string& path);
     void generateRandom(int vertices, double d);
     int getNumV();
     int getNumE();

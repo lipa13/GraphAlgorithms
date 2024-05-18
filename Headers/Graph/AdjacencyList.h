@@ -12,8 +12,9 @@ public:
     bool& directed;
 
     AdjacencyList(int& vertices, bool& isDirected);
+    void initList();
+    void clearList();
     ~AdjacencyList();
-
     void addEdge(int start, int end, int weight);
     Edge* getNeighbors(int V);
     void display();

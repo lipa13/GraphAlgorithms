@@ -36,43 +36,34 @@ bool Graph::isEdgeCorrect(int s, int e)
     return correct;
 }
 
-void Graph::loadFromFile(string& path)
+bool Graph::loadFromFile(string& path)
 {
-    /*ifstream file(path);
-    if(!file)
+    ifstream file(path);
+
+    // sprawdzenie, czy plik jest otwarty
+    if(!file.is_open())
     {
-        // komunikat o niepoprawnym wczytaniu pliku
-        return;
+        return false; // jeśli nie to zwraca false
     }
 
     file >> numE >> numV;
 
-    if(adjacencyList!=nullptr)
+    if(adjacencyList.data!=nullptr)
     {
-        for(int i=0; i<numV; i++)
-        {
-            delete[] adjacencyList[i];
-        }
-        delete[] adjacencyList;
-        delete[] numberOfNeighbors;
+        adjacencyList.clearList();
     }
 
-    adjacencyList = new Edge*[numV];
-    numberOfNeighbors = new int[numV]();
-
-    for(int i=0; i<numV; i++)
-    {
-        adjacencyList[i] = new Edge[numV];
-    }
+    adjacencyList.initList();
 
     int start, end, weight;
 
     while(file >> start >> end >> weight)
     {
-        addEdge(start, end, weight);
+        adjacencyList.addEdge(start, end, weight);
     }
 
-    file.close();*/
+    file.close();
+    return true; // zwraca true, jeśli wczytanie danych się powiodło
 }
 
 void Graph::generateRandom(int vertices, double d)
@@ -82,21 +73,10 @@ void Graph::generateRandom(int vertices, double d)
 
     if(adjacencyList.data!=nullptr)
     {
-        for(int i=0; i<numV; i++)
-        {
-            delete[] adjacencyList.data[i];
-        }
-        delete[] adjacencyList.data;
-        delete[] adjacencyList.numberOfNeighbors;
+        adjacencyList.clearList();
     }
 
-    adjacencyList.data = new Edge*[numV];
-    adjacencyList.numberOfNeighbors = new int[numV]();
-
-    for(int i=0; i<numV; i++)
-    {
-        adjacencyList.data[i] = new Edge[numV-1];
-    }
+    adjacencyList.initList();
 
     // Generowanie minimalnego drzewa rozpinającego
     for (int i=1; i<numV; i++)
