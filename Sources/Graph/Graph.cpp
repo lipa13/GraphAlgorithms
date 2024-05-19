@@ -45,6 +45,16 @@ void Graph::addEdge(int start, int end, int w)
 
 bool Graph::loadFromFile(string& path)
 {
+    if(adjacencyList.data!=nullptr)
+    {
+        adjacencyList.clearList();
+    }
+
+    if(incidenceMatrix.data!= nullptr)
+    {
+        incidenceMatrix.clearMatrix();
+    }
+
     ifstream file(path);
 
     // sprawdzenie, czy plik jest otwarty
@@ -55,18 +65,7 @@ bool Graph::loadFromFile(string& path)
 
     file >> numE >> numV;
 
-    if(adjacencyList.data!=nullptr)
-    {
-        adjacencyList.clearList();
-    }
-
     adjacencyList.initList();
-
-    if(incidenceMatrix.data!= nullptr)
-    {
-        incidenceMatrix.clearMatrix();
-    }
-
     incidenceMatrix.initMatrix();
 
     int start, end, weight;
@@ -82,21 +81,20 @@ bool Graph::loadFromFile(string& path)
 
 void Graph::generateRandom(int vertices, double d)
 {
-    numV = vertices;
-    numE = static_cast<int>(d/100*vertices*(vertices-1)/2);
-
     if(adjacencyList.data!=nullptr)
     {
         adjacencyList.clearList();
     }
-
-    adjacencyList.initList();
 
     if(incidenceMatrix.data!= nullptr)
     {
         incidenceMatrix.clearMatrix();
     }
 
+    numV = vertices;
+    numE = static_cast<int>(d/100*vertices*(vertices-1)/2);
+
+    adjacencyList.initList();
     incidenceMatrix.initMatrix();
 
     // Generowanie minimalnego drzewa rozpinającego
