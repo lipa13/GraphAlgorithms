@@ -52,6 +52,7 @@ void chooseShortestPathMenu()
             if(graphSPA.adjacencyList.data!=nullptr)
             {
                 graphSPA.adjacencyList.display();
+                graphSPA.incidenceMatrix.display();
             }
             else
             {
@@ -122,6 +123,7 @@ void chooseMSTMenu()
             if(graphMST.adjacencyList.data!=nullptr)
             {
                 graphMST.adjacencyList.display();
+                graphMST.incidenceMatrix.display();
             }
             else
             {

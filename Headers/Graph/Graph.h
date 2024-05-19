@@ -6,6 +6,7 @@
 #include <fstream>
 #include "AdjacencyList.h"
 #include "Edge.h"
+#include "IncidenceMatrix.h"
 
 using namespace std;
 
@@ -17,9 +18,11 @@ class Graph
 
 public:
     AdjacencyList adjacencyList;
+    IncidenceMatrix incidenceMatrix;
 
     Graph(bool isDirected);
     bool isEdgeCorrect(int s, int e);
+    void addEdge(int start, int end, int w);
     bool loadFromFile(string& path);
     void generateRandom(int vertices, double d);
     int getNumV();

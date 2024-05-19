@@ -2,7 +2,8 @@
 
 using namespace std;
 
-Graph::Graph(bool isDirected):directed(isDirected), numV(0), numE(0), adjacencyList(numV, directed) {}
+Graph::Graph(bool isDirected)
+    :directed(isDirected), numV(0), numE(0), adjacencyList(numV, directed), incidenceMatrix(numV, numE, directed) {}
 
 bool Graph::isEdgeCorrect(int s, int e)
 {
@@ -36,6 +37,12 @@ bool Graph::isEdgeCorrect(int s, int e)
     return correct;
 }
 
+void Graph::addEdge(int start, int end, int w)
+{
+    adjacencyList.addEdge(start, end, w);
+    incidenceMatrix.addEdge(start, end, w);
+}
+
 bool Graph::loadFromFile(string& path)
 {
     ifstream file(path);
@@ -55,11 +62,18 @@ bool Graph::loadFromFile(string& path)
 
     adjacencyList.initList();
 
+    if(incidenceMatrix.data!= nullptr)
+    {
+        incidenceMatrix.clearMatrix();
+    }
+
+    incidenceMatrix.initMatrix();
+
     int start, end, weight;
 
     while(file >> start >> end >> weight)
     {
-        adjacencyList.addEdge(start, end, weight);
+        addEdge(start, end, weight);
     }
 
     file.close();
@@ -78,6 +92,13 @@ void Graph::generateRandom(int vertices, double d)
 
     adjacencyList.initList();
 
+    if(incidenceMatrix.data!= nullptr)
+    {
+        incidenceMatrix.clearMatrix();
+    }
+
+    incidenceMatrix.initMatrix();
+
     // Generowanie minimalnego drzewa rozpinającego
     for (int i=1; i<numV; i++)
     {
@@ -88,13 +109,13 @@ void Graph::generateRandom(int vertices, double d)
         {
             start = i;
             end = rand()%i;
-            w = rand()%numV;
+            w = rand()%numV+1;
 
             correct = isEdgeCorrect(start, end);
 
         }while(!correct);
 
-        adjacencyList.addEdge(start, end, w);
+        addEdge(start, end, w);
     }
 
     // Dokładanie krawędzi do określonej gęstości
@@ -113,7 +134,7 @@ void Graph::generateRandom(int vertices, double d)
 
         }while(!correct);
 
-        adjacencyList.addEdge(start, end, w);
+        addEdge(start, end, w);
     }
 }
 
