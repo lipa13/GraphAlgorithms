@@ -7,34 +7,24 @@ Graph::Graph(bool isDirected)
 
 bool Graph::isEdgeCorrect(int s, int e)
 {
-    bool correct = true;
-
     if(s==e)
     {
-        correct=false;
+        return false;
     }
-    else
-    {
-        for(int j=0; j<adjacencyList.numberOfNeighbors[j]; j++)
-        {
-            for(int k=0; k<adjacencyList.numberOfNeighbors[j]; k++)
-            {
-                if((adjacencyList.data[j][k].startV==s && adjacencyList.data[j][k].endV==e) ||
-                   (adjacencyList.data[j][k].endV==s && adjacencyList.data[j][k].startV==e))
-                {
-                    correct=false;
-                    break;
-                }
-            }
 
-            if(!correct)
+    for(int j=0; j<numV; j++)
+    {
+        for(int k=0; k<adjacencyList.numberOfNeighbors[j]; k++)
+        {
+            if((adjacencyList.data[j][k].startV==s && adjacencyList.data[j][k].endV==e) ||
+                (adjacencyList.data[j][k].startV == e && adjacencyList.data[j][k].endV == s))
             {
-                break;
+                return false;
             }
         }
     }
 
-    return correct;
+    return true;
 }
 
 void Graph::addEdge(int start, int end, int w)
