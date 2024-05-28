@@ -5,6 +5,7 @@ class IncidenceMatrix
 {
 public:
     int** data; // dynamiczna tablica dwuwymiarowa reprezentująca macierz incydencji
+    int* edgeWeigths;
     int& numV;
     int& numE;
     bool& directed;

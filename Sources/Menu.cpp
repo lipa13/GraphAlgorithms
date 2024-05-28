@@ -12,7 +12,7 @@ void Menu::displayMainMenu()
     cout << "                     MENU GLOWNE\n";
     cout << "=====================================================\n";
     cout << "1. Wyznaczanie minimalnego drzewa rozpinajacego (MST)\n";
-    cout << "2. Wyznaczanie najkrotszej sciezki w grafie\n";
+    cout << "2. Wyznaczanie najkrotszej sciezki w grafie (SPA)\n";
     cout << "3. Wyjscie\n";
     cout << "=====================================================\n";
 }
