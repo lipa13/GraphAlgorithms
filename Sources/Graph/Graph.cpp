@@ -17,7 +17,7 @@ bool Graph::isEdgeCorrect(int s, int e)
         for(int k=0; k<adjacencyList.numberOfNeighbors[j]; k++)
         {
             if((adjacencyList.data[j][k].startV==s && adjacencyList.data[j][k].endV==e) ||
-                (adjacencyList.data[j][k].startV == e && adjacencyList.data[j][k].endV == s))
+                (!directed && adjacencyList.data[j][k].startV == e && adjacencyList.data[j][k].endV == s))
             {
                 return false;
             }
@@ -87,23 +87,30 @@ void Graph::generateRandom(int vertices, double d)
     adjacencyList.initList();
     incidenceMatrix.initMatrix();
 
-    // Generowanie minimalnego drzewa rozpinającego
-    for (int i=1; i<numV; i++)
+    if(directed)
     {
-        bool correct;
-        int start, end, w;
 
-        do
+    }
+    else
+    {
+        // Generowanie minimalnego drzewa rozpinającego dla grafu nieskierowanego
+        for (int i=1; i<numV; i++)
         {
-            start = i;
-            end = rand()%i;
-            w = rand()%numV+1;
+            bool correct;
+            int start, end, w;
 
-            correct = isEdgeCorrect(start, end);
+            do
+            {
+                start = i;
+                end = rand()%i;
+                w = rand()%numV+1;
 
-        }while(!correct);
+                correct = isEdgeCorrect(start, end);
 
-        addEdge(start, end, w);
+            }while(!correct);
+
+            addEdge(start, end, w);
+        }
     }
 
     // Dokładanie krawędzi do określonej gęstości
