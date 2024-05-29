@@ -13,6 +13,7 @@ void IncidenceMatrix::initMatrix()
 {
     data = new int*[numV];
     edgeWeigths = new int[numE];
+    edgeIndex=0;
 
     for(int i=0; i<numV; i++)
     {
