@@ -10,7 +10,8 @@ protected:
 
 public:
     Algorithm(Graph& g);
-    virtual void run() = 0;
+    virtual void runList() = 0;
+    virtual void runMatrix() = 0;
     virtual void displayResult() = 0;
 };
 
