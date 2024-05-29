@@ -70,7 +70,7 @@ void IncidenceMatrix::display()
     // Wyświetlanie wierszy dla wierzchołków
     for(int i = 0; i < numV; i++)
     {
-        cout << setw(4) << i; // Wiersz wierzchołka
+        cout << setw(4) << "v" + to_string(i); // Wiersz wierzchołka
         for(int j = 0; j < numE; j++)
         {
             cout << setw(4) << data[i][j]; // Wartości macierzy
