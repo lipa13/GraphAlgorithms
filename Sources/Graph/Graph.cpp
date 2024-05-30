@@ -1,3 +1,6 @@
+#include <chrono>
+#include <random>
+#include <algorithm>
 #include "../../Headers/Graph/Graph.h"
 
 using namespace std;
@@ -82,18 +85,47 @@ void Graph::generateRandom(int vertices, double d)
     }
 
     numV = vertices;
-    numE = static_cast<int>(d/100*vertices*(vertices-1)/2);
+    numE = static_cast<int>(d/100*vertices*(vertices-1)/(directed?1:2));
+
+    // Obliczenie minimalnej liczby krawedzi do utworzenia grafu spojnego skierowanego: V i nieskierowanwgo: V-1
+    int minEdges = directed?vertices:vertices-1;
+
+    // Sprawdzenie, czy liczba krawedzi jest wystarczajaca do spojności
+    if(numE<minEdges)
+    {
+        cout << "\nDla podanej gestosci i liczby wierzcholkow nie mozna utworzyc spojnego grafu.\n";
+        cout << "Graf nie zostal utworzony. Sprobuj ponownie dla innych wartosci parametrow.\n";
+        return;
+    }
 
     adjacencyList.initList();
     incidenceMatrix.initMatrix();
 
     if(directed)
     {
+        // Generowanie grafu spójnego dla grafu skierowanego
+        int* randomOrder = new int[numV];
+        for(int i=0; i <numV; i++)
+        {
+            randomOrder[i] = i;
+        }
 
+        shuffle(randomOrder, randomOrder+numV, default_random_engine(chrono::system_clock::now().time_since_epoch().count()));
+
+        for(int i=0; i<numV; i++)
+        {
+            int start = randomOrder[i];
+            int end = randomOrder[(i+1)%numV];
+            int w = rand()%10+1;
+
+            addEdge(start, end, w);
+        }
+
+        delete[] randomOrder;
     }
     else
     {
-        // Generowanie minimalnego drzewa rozpinającego dla grafu nieskierowanego
+        // Generowanie grafu spójnego dla grafu nieskierowanego
         for (int i=1; i<numV; i++)
         {
             bool correct;
@@ -103,7 +135,7 @@ void Graph::generateRandom(int vertices, double d)
             {
                 start = i;
                 end = rand()%i;
-                w = rand()%numV+1;
+                w = rand()%10+1;
 
                 correct = isEdgeCorrect(start, end);
 
@@ -123,7 +155,7 @@ void Graph::generateRandom(int vertices, double d)
         {
             start = rand()%numV;
             end = rand()%numV;
-            w = rand()%numV+1;
+            w = rand()%10+1;
 
             correct = isEdgeCorrect(start, end);
 
@@ -131,6 +163,8 @@ void Graph::generateRandom(int vertices, double d)
 
         addEdge(start, end, w);
     }
+
+    cout << "\nGraf zostal pomyslnie utworzony." << endl;
 }
 
 int Graph::getNumV()
