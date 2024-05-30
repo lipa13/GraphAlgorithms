@@ -12,7 +12,7 @@ IncidenceMatrix::IncidenceMatrix(int& vertices, int& edges, bool& isDirected): n
 void IncidenceMatrix::initMatrix()
 {
     data = new int*[numV];
-    edgeWeigths = new int[numE];
+    edgeWeights = new int[numE];
     edgeIndex=0;
 
     for(int i=0; i<numV; i++)
@@ -51,7 +51,7 @@ void IncidenceMatrix::addEdge(int start, int end, int weight)
         data[start][edgeIndex] = 1;
         data[end][edgeIndex] = 1;
     }
-    edgeWeigths[edgeIndex]=weight;
+    edgeWeights[edgeIndex]=weight;
     edgeIndex++;
 }
 
