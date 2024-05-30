@@ -2,6 +2,8 @@
 
 #include "../Headers/Menu.h"
 #include "../Headers/Graph/Graph.h"
+#include "../Headers/Algorithms/MST/PrimAlgorithm.h"
+#include "../Headers/Algorithms/MST/KruskalAlgorithm.h"
 
 using namespace std;
 
@@ -132,11 +134,33 @@ void chooseMSTMenu()
         }
         else if(choice==4)
         {
-            // algorytm prima
+            // algorytm Prima
+            if(graphMST.adjacencyList.data != nullptr)
+            {
+                PrimAlgorithm primAlgorithm(graphMST);
+
+                primAlgorithm.runList();
+                primAlgorithm.displayResult();
+
+                primAlgorithm.runMatrix();
+                primAlgorithm.displayResult();
+            }
+            else
+            {
+                cout << "\nNie wczytano jeszcze danych!!!\n";
+            }
         }
         else if(choice==5)
         {
-            // algorytm kruskala
+            // algorytm Kruskala
+            if(graphMST.adjacencyList.data != nullptr)
+            {
+
+            }
+            else
+            {
+                cout << "\nNie wczytano jeszcze danych!!!\n";
+            }
         }
         else if(choice==6)
         {
