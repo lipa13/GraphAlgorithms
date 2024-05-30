@@ -84,8 +84,8 @@ void PrimAlgorithm::runMatrix()
         {
             if(graph.incidenceMatrix.data[u][e]==1)
             {
-                int endV=-1, w=0;
-                w = graph.incidenceMatrix.edgeWeights[e];
+                int endV=-1;
+                int w = graph.incidenceMatrix.edgeWeights[e];
 
                 for(int i=0; i<numV; i++)
                 {
@@ -96,7 +96,7 @@ void PrimAlgorithm::runMatrix()
                     }
                 }
 
-                if(endV != -1 && priorityQueue.isInQueue(endV) && w<key[endV])
+                if(endV!=-1 && priorityQueue.isInQueue(endV) && w<key[endV])
                 {
                     key[endV] = w;
                     vParents[endV] = u;
