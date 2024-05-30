@@ -140,9 +140,11 @@ void chooseMSTMenu()
                 PrimAlgorithm primAlgorithm(graphMST);
 
                 primAlgorithm.runList();
+                cout<<"\nWyniki reprezentacja listowa\n";
                 primAlgorithm.displayResult();
 
                 primAlgorithm.runMatrix();
+                cout<<"\nWyniki reprezentacja macierzowa\n";
                 primAlgorithm.displayResult();
             }
             else

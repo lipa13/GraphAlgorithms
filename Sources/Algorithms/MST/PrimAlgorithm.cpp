@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <limits>
+#include <iomanip>
 
 using namespace std;
 
@@ -109,12 +110,12 @@ void PrimAlgorithm::runMatrix()
 
 void PrimAlgorithm::displayResult()
 {
-    cout << "Edge   Weight\n";
+    cout << "Edge     Weight\n";
     for(int i=0; i<graph.getNumV(); i++)
     {
         if(i!=r)
         {
-            cout << vParents[i] << " - " << i << "    " << key[i] << endl;
+            cout << left << setw(7) << to_string(vParents[i]) + " - " + to_string(i) << "   " << right << setw(3) << key[i] << endl;
         }
     }
 }
