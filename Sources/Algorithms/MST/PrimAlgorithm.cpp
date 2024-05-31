@@ -113,7 +113,7 @@ void PrimAlgorithm::displayResult()
     cout << "Edge     Weight\n";
     for(int i=0; i<graph.getNumV(); i++)
     {
-        if(i!=r)
+        if(vParents[i]!=-1)
         {
             cout << left << setw(7) << to_string(vParents[i]) + " - " + to_string(i) << "   " << right << setw(3) << key[i] << endl;
         }
