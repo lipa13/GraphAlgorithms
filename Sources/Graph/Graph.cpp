@@ -164,7 +164,7 @@ void Graph::generateRandom(int vertices, double d)
         addEdge(start, end, w);
     }
 
-    cout << "\nGraf zostal pomyslnie utworzony." << endl;
+    //cout << "\nGraf zostal pomyslnie utworzony." << endl;
 }
 
 int Graph::getNumV()
