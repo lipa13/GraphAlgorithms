@@ -33,7 +33,7 @@ void IncidenceMatrix::clearMatrix()
 
 IncidenceMatrix::~IncidenceMatrix()
 {
-    if(data!= nullptr)
+    if(data!=nullptr)
     {
         clearMatrix();
     }
@@ -62,17 +62,17 @@ void IncidenceMatrix::display()
 
     // Wyświetlanie nagłówków kolumn dla krawędzi
     cout << setw(4) << " "; // Ustawienie szerokości kolumny dla wyrównania
-    for(int j = 0; j < numE; j++)
+    for(int j=0; j<numE; j++)
     {
         cout << setw(4) << "e" + to_string(j);
     }
     cout << endl;
 
     // Wyświetlanie wierszy dla wierzchołków
-    for(int i = 0; i < numV; i++)
+    for(int i=0; i<numV; i++)
     {
         cout << setw(4) << "v" + to_string(i); // Wiersz wierzchołka
-        for(int j = 0; j < numE; j++)
+        for(int j=0; j<numE; j++)
         {
             cout << setw(4) << data[i][j]; // Wartości macierzy
         }

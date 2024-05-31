@@ -79,7 +79,7 @@ void Graph::generateRandom(int vertices, double d)
         adjacencyList.clearList();
     }
 
-    if(incidenceMatrix.data!= nullptr)
+    if(incidenceMatrix.data!=nullptr)
     {
         incidenceMatrix.clearMatrix();
     }
@@ -105,7 +105,7 @@ void Graph::generateRandom(int vertices, double d)
     {
         // Generowanie grafu spójnego dla grafu skierowanego
         int* randomOrder = new int[numV];
-        for(int i=0; i <numV; i++)
+        for(int i=0; i<numV; i++)
         {
             randomOrder[i] = i;
         }
@@ -146,7 +146,7 @@ void Graph::generateRandom(int vertices, double d)
     }
 
     // Dokładanie krawędzi do określonej gęstości
-    for(int i=numV-1; i<numE; i++)
+    for(int i=directed?numV:numV-1; i<numE; i++)
     {
         bool correct;
         int start, end, w;
