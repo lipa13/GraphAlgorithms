@@ -1,3 +1,3 @@
 #include "../../Headers/Algorithms/Algorithm.h"
 
-Algorithm::Algorithm(Graph& g) : graph(g) {}
+Algorithm::Algorithm(Graph& g) : graph(g), numV(g.getNumV()) {}

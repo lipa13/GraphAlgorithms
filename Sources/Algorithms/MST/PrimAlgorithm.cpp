@@ -8,13 +8,12 @@ using namespace std;
 
 void PrimAlgorithm::init()
 {
-    numV = graph.getNumV();
     vParents = new int[numV];
     key = new int[numV];
     r = rand()%numV;
 }
 
-PrimAlgorithm::PrimAlgorithm(Graph& g) : MSTAlgorithm(g), vParents(nullptr), key(nullptr)
+PrimAlgorithm::PrimAlgorithm(Graph& g) : MSTAlgorithm(g)
 {
     init();
 }

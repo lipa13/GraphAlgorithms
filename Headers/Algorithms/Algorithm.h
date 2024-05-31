@@ -7,6 +7,7 @@ class Algorithm
 {
 protected:
     Graph& graph;
+    int numV;
 
 public:
     Algorithm(Graph& g);

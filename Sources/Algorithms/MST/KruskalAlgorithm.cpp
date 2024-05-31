@@ -6,7 +6,7 @@
 
 using namespace std;
 
-KruskalAlgorithm::KruskalAlgorithm(Graph& g): MSTAlgorithm(g), vParents(nullptr), vRanks(nullptr), edges(nullptr), result(nullptr)
+KruskalAlgorithm::KruskalAlgorithm(Graph& g): MSTAlgorithm(g)
 {
     init();
 }
@@ -21,7 +21,6 @@ KruskalAlgorithm::~KruskalAlgorithm()
 
 void KruskalAlgorithm::init()
 {
-    numV = graph.getNumV();
     vParents = new int[numV];
     vRanks = new int[numV];
     edges = new Edge[graph.getNumE()];

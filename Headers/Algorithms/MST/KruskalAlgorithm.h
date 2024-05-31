@@ -6,14 +6,12 @@
 class KruskalAlgorithm : public MSTAlgorithm
 {
 private:
-    int* vParents;
     int* vRanks;
     Edge* edges;
     Edge* result;
     int edgesSize;
     int resultSize;
-    int numV;
-    void init();
+    void init() override;
     void makeSets();
     int findSet(int u);
     void unionSets(int u, int v);

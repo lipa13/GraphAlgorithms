@@ -7,11 +7,9 @@
 class PrimAlgorithm : public MSTAlgorithm
 {
 private:
-    int* vParents;
     int* key;
-    int numV;
     int r; // wierzchołek startowy
-    void init();
+    void init() override;
     void start();
 
 public:
