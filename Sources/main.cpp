@@ -137,6 +137,7 @@ void chooseMSTMenu()
             // algorytm Prima
             if(graphMST.adjacencyList.data != nullptr)
             {
+                cout<<"\nWYNIKI ALGORYTM PRIMA\n";
                 PrimAlgorithm primAlgorithm(graphMST);
 
                 primAlgorithm.runList();
@@ -157,7 +158,16 @@ void chooseMSTMenu()
             // algorytm Kruskala
             if(graphMST.adjacencyList.data != nullptr)
             {
+                cout<<"\nWYNIKI ALGORYTM KRUSKALA\n";
+                KruskalAlgorithm kruskalAlgorithm(graphMST);
 
+                kruskalAlgorithm.runList();
+                cout<<"\nReprezentacja listowa\n";
+                kruskalAlgorithm.displayResult();
+
+                kruskalAlgorithm.runMatrix();
+                cout<<"\nReprezentacja macierzowa\n";
+                kruskalAlgorithm.displayResult();
             }
             else
             {
