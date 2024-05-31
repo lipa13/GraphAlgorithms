@@ -158,9 +158,12 @@ void KruskalAlgorithm::runMatrix()
 
 void KruskalAlgorithm::displayResult()
 {
+    int mst=0;
     cout << "Edge     Weight\n";
     for(int i = 0; i < resultSize; i++)
     {
         cout << left << setw(7) << to_string(result[i].startV) + " - " + to_string(result[i].endV) << "   " << right << setw(3) << result[i].weight << endl;
+        mst += result[i].weight;
     }
+    cout << "MST = " << mst << endl;
 }

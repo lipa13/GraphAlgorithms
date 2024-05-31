@@ -110,12 +110,15 @@ void PrimAlgorithm::runMatrix()
 
 void PrimAlgorithm::displayResult()
 {
+    int mst=0;
     cout << "Edge     Weight\n";
     for(int i=0; i<graph.getNumV(); i++)
     {
         if(vParents[i]!=-1)
         {
             cout << left << setw(7) << to_string(vParents[i]) + " - " + to_string(i) << "   " << right << setw(3) << key[i] << endl;
+            mst += key[i];
         }
     }
+    cout << "MST = " << mst << endl;
 }
