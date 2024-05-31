@@ -9,16 +9,17 @@ protected:
     int* d;
     int* p;
     int s;
+    int t;
     void init();
     void start();
     void reconstructPath(int target, int*& path, int& pathLength);
 
 public:
-    SPAlgorithm(Graph& g);
+    SPAlgorithm(Graph& g, int startV, int target);
     virtual ~SPAlgorithm();
     virtual void runList() override = 0;
     virtual void runMatrix() override = 0;
-    virtual void displayResult() override;
+    void displayResult() override;
 };
 
 #endif //AIZO_PROJEKT_2_SPALGORITHM_H

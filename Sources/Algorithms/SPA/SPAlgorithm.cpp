@@ -6,7 +6,7 @@
 
 using namespace std;
 
-SPAlgorithm::SPAlgorithm(Graph& g) : Algorithm(g), d(nullptr), p(nullptr), s(0) {}
+SPAlgorithm::SPAlgorithm(Graph& g, int startV, int target) : Algorithm(g), d(nullptr), p(nullptr), s(startV), t(target) {}
 
 SPAlgorithm::~SPAlgorithm()
 {
@@ -40,23 +40,53 @@ void SPAlgorithm::reconstructPath(int target, int*& path, int& pathLength)
 
     path = new int[pathLength];
 
-    int index = pathLength-1;
+    int i = pathLength-1;
     for(int v=target; v!=-1; v=p[v])
     {
-        path[index--] = v;
+        path[i--] = v;
     }
 }
 
 void SPAlgorithm::displayResult()
 {
     cout << "     d[v]   Path\n";
-    for(int i=0; i<numV; i++)
+    /*for(int i=0; i<numV; i++)
     {
         int* path;
         int pathLength;
         reconstructPath(i, path, pathLength);
 
         cout << left << setw(4) << "v" + to_string(i) << " " << right << setw(3) << d[i] << "    ";
+        if(d[i]==0)
+        {
+            cout << "NO PATH (SOURCE)";
+        }
+        else
+        {
+            for(int j=0; j<pathLength; j++)
+            {
+                cout << path[j];
+                if(j<pathLength-1)
+                {
+                    cout << " -> ";
+                }
+            }
+        }
+        cout << "\n";
+        delete[] path;
+    }*/
+
+    int* path;
+    int pathLength;
+    reconstructPath(t, path, pathLength);
+
+    cout << left << setw(4) << "v" + to_string(t) << " " << right << setw(3) << d[t] << "    ";
+    if(d[t]==0)
+    {
+        cout << "NO PATH (SOURCE)";
+    }
+    else
+    {
         for(int j=0; j<pathLength; j++)
         {
             cout << path[j];
@@ -65,8 +95,7 @@ void SPAlgorithm::displayResult()
                 cout << " -> ";
             }
         }
-        cout << "\n";
-
-        delete[] path;
     }
+    cout << "\n";
+    delete[] path;
 }

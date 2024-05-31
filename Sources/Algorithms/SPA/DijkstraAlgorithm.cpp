@@ -4,10 +4,9 @@
 
 using namespace std;
 
-DijkstraAlgorithm::DijkstraAlgorithm(Graph& g, int startV) : SPAlgorithm(g)
+DijkstraAlgorithm::DijkstraAlgorithm(Graph& g, int startV, int target): SPAlgorithm(g, startV, target)
 {
     init();
-    s = startV;
 }
 
 void DijkstraAlgorithm::runList()

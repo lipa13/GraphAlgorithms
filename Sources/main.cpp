@@ -67,9 +67,16 @@ void chooseShortestPathMenu()
         {
             if(graphSPA.adjacencyList.data!=nullptr)
             {
+                int startV, target;
+
+                cout << "\nPodaj wierzcholek poczatkowy: ";
+                cin >> startV;
+                cout << "Podaj wierzcholek koncowy: ";
+                cin >> target;
+
                 // algorytm Dijkstry
                 cout<<"\nWYNIKI ALGORYTM DIJKSTRY\n";
-                DijkstraAlgorithm dijkstraAlgorithm(graphSPA, 4);
+                DijkstraAlgorithm dijkstraAlgorithm(graphSPA, startV, target);
 
                 dijkstraAlgorithm.runList();
                 cout<<"\nReprezentacja listowa\n";
@@ -88,9 +95,16 @@ void chooseShortestPathMenu()
         {
             if(graphSPA.adjacencyList.data!=nullptr)
             {
+                int startV, target;
+
+                cout << "Podaj wierzcholek poczatkowy: ";
+                cin >> startV;
+                cout << "Podaj wierzcholek koncowy: ";
+                cin >> target;
+
                 // algorytm bellmana-forda
                 cout<<"\nWYNIKI ALGORYTM BELLMANA-FORDA\n";
-                BellmanFordAlgorithm bellmanFordAlgorithm(graphSPA, 4);
+                BellmanFordAlgorithm bellmanFordAlgorithm(graphSPA, startV, target);
 
                 bellmanFordAlgorithm.runList();
                 cout<<"\nReprezentacja listowa\n";

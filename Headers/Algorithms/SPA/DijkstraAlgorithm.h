@@ -7,7 +7,7 @@
 class DijkstraAlgorithm: public SPAlgorithm
 {
 public:
-    DijkstraAlgorithm(Graph& g, int startV);
+    DijkstraAlgorithm(Graph& g, int startV, int target);
     void runList() override;
     void runMatrix() override;
 };

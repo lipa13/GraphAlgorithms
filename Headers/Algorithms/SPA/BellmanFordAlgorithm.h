@@ -6,7 +6,7 @@
 class BellmanFordAlgorithm: public SPAlgorithm
 {
 public:
-    BellmanFordAlgorithm(Graph& g, int startV);
+    BellmanFordAlgorithm(Graph& g, int startV, int target);
     void runList() override;
     void runMatrix() override;
 };

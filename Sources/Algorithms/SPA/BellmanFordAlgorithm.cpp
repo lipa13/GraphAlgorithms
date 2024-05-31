@@ -5,10 +5,9 @@
 
 using namespace std;
 
-BellmanFordAlgorithm::BellmanFordAlgorithm(Graph& g, int startV): SPAlgorithm(g)
+BellmanFordAlgorithm::BellmanFordAlgorithm(Graph& g, int startV, int target): SPAlgorithm(g, startV, target)
 {
     init();
-    s = startV;
 }
 
 void BellmanFordAlgorithm::runList()
