@@ -4,6 +4,8 @@
 #include "../Headers/Graph/Graph.h"
 #include "../Headers/Algorithms/MST/PrimAlgorithm.h"
 #include "../Headers/Algorithms/MST/KruskalAlgorithm.h"
+#include "../Headers/Algorithms/SPA/DijkstraAlgorithm.h"
+#include "../Headers/Algorithms/SPA/BellmanFordAlgorithm.h"
 
 using namespace std;
 
@@ -63,11 +65,45 @@ void chooseShortestPathMenu()
         }
         else if(choice==4)
         {
-            // algorytm dijkstry
+            if(graphSPA.adjacencyList.data!=nullptr)
+            {
+                // algorytm Dijkstry
+                cout<<"\nWYNIKI ALGORYTM DIJKSTRY\n";
+                DijkstraAlgorithm dijkstraAlgorithm(graphSPA, 4);
+
+                dijkstraAlgorithm.runList();
+                cout<<"\nReprezentacja listowa\n";
+                dijkstraAlgorithm.displayResult();
+
+                dijkstraAlgorithm.runMatrix();
+                cout<<"\nReprezentacja macierzowa\n";
+                dijkstraAlgorithm.displayResult();
+            }
+            else
+            {
+                cout << "\nNie wczytano jeszcze danych!!!\n";
+            }
         }
         else if(choice==5)
         {
-            // algorytm bellmana-forda
+            if(graphSPA.adjacencyList.data!=nullptr)
+            {
+                // algorytm bellmana-forda
+                cout<<"\nWYNIKI ALGORYTM BELLMANA-FORDA\n";
+                BellmanFordAlgorithm bellmanFordAlgorithm(graphSPA, 4);
+
+                bellmanFordAlgorithm.runList();
+                cout<<"\nReprezentacja listowa\n";
+                bellmanFordAlgorithm.displayResult();
+
+                bellmanFordAlgorithm.runMatrix();
+                cout<<"\nReprezentacja macierzowa\n";
+                bellmanFordAlgorithm.displayResult();
+            }
+            else
+            {
+                cout << "\nNie wczytano jeszcze danych!!!\n";
+            }
         }
         else if(choice==6)
         {
@@ -141,11 +177,11 @@ void chooseMSTMenu()
                 PrimAlgorithm primAlgorithm(graphMST);
 
                 primAlgorithm.runList();
-                cout<<"\nWyniki reprezentacja listowa\n";
+                cout<<"\nReprezentacja listowa\n";
                 primAlgorithm.displayResult();
 
                 primAlgorithm.runMatrix();
-                cout<<"\nWyniki reprezentacja macierzowa\n";
+                cout<<"\nReprezentacja macierzowa\n";
                 primAlgorithm.displayResult();
             }
             else

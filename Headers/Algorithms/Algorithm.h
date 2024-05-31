@@ -8,6 +8,7 @@ class Algorithm
 protected:
     Graph& graph;
     int numV;
+    int numE;
 
 public:
     Algorithm(Graph& g);
