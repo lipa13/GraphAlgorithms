@@ -72,7 +72,7 @@ void executeTests()
                 cout << "test " << k+1 << "| L: " << listTest << "us  M: " << matrixTest << "us" << endl;
             }
 
-            cout << "srednia z 50 testow| L: " << sumListTests/50 << "us  M: " << sumMatrixTests/50 << "us" << endl;
+            cout << "srednia z 50 testow| L: " << sumListTests/50.0 << "us  M: " << sumMatrixTests/50.0 << "us" << endl;
         }
     }
 
@@ -187,7 +187,7 @@ void executeTests()
                 cout << "test " << k+1 << "| L: " << listTest << "us  M: " << matrixTest << "us" << endl;
             }
 
-            cout << "srednia z 50 testow| L: " << sumListTests/50 << "us  M: " << sumMatrixTests/50 << "us" << endl;
+            cout << "srednia z 50 testow| L: " << sumListTests/50.0 << "us  M: " << sumMatrixTests/50.0 << "us" << endl;
         }
     }
 
@@ -245,7 +245,7 @@ void executeTests()
                 cout << "test " << k+1 << "| L: " << listTest << "us  M: " << matrixTest << "us" << endl;
             }
 
-            cout << "srednia z 50 testow| L: " << sumListTests/50 << "us  M: " << sumMatrixTests/50 << "us" << endl;
+            cout << "srednia z 50 testow| L: " << sumListTests/50.0 << "us  M: " << sumMatrixTests/50.0 << "us" << endl;
         }
     }
 }
