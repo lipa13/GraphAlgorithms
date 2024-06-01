@@ -116,7 +116,7 @@ void Graph::generateRandom(int vertices, double d)
         {
             int start = randomOrder[i];
             int end = randomOrder[(i+1)%numV];
-            int w = rand()%10+1;
+            int w = rand()%15+1;
 
             addEdge(start, end, w);
         }
@@ -135,7 +135,7 @@ void Graph::generateRandom(int vertices, double d)
             {
                 start = i;
                 end = rand()%i;
-                w = rand()%10+1;
+                w = rand()%15+1;
 
                 correct = isEdgeCorrect(start, end);
 
@@ -155,7 +155,7 @@ void Graph::generateRandom(int vertices, double d)
         {
             start = rand()%numV;
             end = rand()%numV;
-            w = rand()%10+1;
+            w = rand()%15+1;
 
             correct = isEdgeCorrect(start, end);
 

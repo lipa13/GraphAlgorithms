@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 
 #include "../Headers/Menu.h"
 #include "../Headers/Graph/Graph.h"
@@ -12,6 +13,242 @@ using namespace std;
 Menu menu;
 Graph graphMST(false);
 Graph graphSPA(true);
+
+void executeTests()
+{
+    Graph testGraphMST(false);
+    Graph testGraphSPA(true);
+
+    // Testy dla algorytmu Prima
+    cout << "\nTESTY ALGORYTM PRIMA\n";
+    for(int i=20; i<150; i+=20)
+    {
+        cout << "\n=== " << i << " wierzcholkow ===\n";
+        for(int j=0; j<3; j++)
+        {
+            double d=0;
+
+            if(j==0)
+            {
+                d=25;
+            }
+            else if(j==1)
+            {
+                d=50;
+            }
+            else if(j==2)
+            {
+                d=99;
+            }
+            cout << "\n--- gestosc " << d << "% ---\n";
+
+            double sumListTests=0, sumMatrixTests=0;
+
+            for(int k=0; k<50; k++)
+            {
+                double  listTest=0, matrixTest=0;
+
+                testGraphMST.generateRandom(i, d);
+                PrimAlgorithm testPrim(testGraphMST);
+
+                chrono::high_resolution_clock::time_point start, end;
+
+                // Reprezentacja listowa
+                start = chrono::high_resolution_clock::now(); // pierwszy pomiar - start
+                testPrim.runList();
+                end = chrono::high_resolution_clock::now(); // drugi pomiar - koniec
+
+                listTest = chrono::duration<double, micro>(end - start).count();
+                sumListTests += chrono::duration<double, micro>(end - start).count();
+
+                // Reprezentacja macierzowa
+                start = chrono::high_resolution_clock::now(); // pierwszy pomiar - start
+                testPrim.runMatrix();
+                end = chrono::high_resolution_clock::now(); // drugi pomiar - koniec
+
+                matrixTest = chrono::duration<double, micro>(end - start).count();
+                sumMatrixTests += chrono::duration<double, micro>(end - start).count();
+
+                cout << "test " << k+1 << "| L: " << listTest << "us  M: " << matrixTest << "us" << endl;
+            }
+
+            cout << "srednia z 50 testow| L: " << sumListTests/50 << "us  M: " << sumMatrixTests/50 << "us" << endl;
+        }
+    }
+
+    // Testy dla algorytmu Kruskala
+    cout << "\nTESTY ALGORYTM KRUSKALA\n";
+    for(int i=20; i<150; i+=20)
+    {
+        cout << "\n=== " << i << " wierzcholkow ===\n";
+        for(int j=0; j<3; j++)
+        {
+            double d=0;
+
+            if(j==0)
+            {
+                d=25;
+            }
+            else if(j==1)
+            {
+                d=50;
+            }
+            else if(j==2)
+            {
+                d=99;
+            }
+            cout << "\n--- gestosc " << d << "% ---\n";
+
+            double sumListTests=0, sumMatrixTests=0;
+
+            for(int k=0; k<50; k++)
+            {
+                double  listTest=0, matrixTest=0;
+
+                testGraphMST.generateRandom(i, d);
+                KruskalAlgorithm testKruskal(testGraphMST);
+
+                chrono::high_resolution_clock::time_point start, end;
+
+                // Reprezentacja listowa
+                start = chrono::high_resolution_clock::now(); // pierwszy pomiar - start
+                testKruskal.runList();
+                end = chrono::high_resolution_clock::now(); // drugi pomiar - koniec
+
+                listTest = chrono::duration<double, micro>(end - start).count();
+                sumListTests += chrono::duration<double, micro>(end - start).count();
+
+                // Reprezentacja macierzowa
+                start = chrono::high_resolution_clock::now(); // pierwszy pomiar - start
+                testKruskal.runMatrix();
+                end = chrono::high_resolution_clock::now(); // drugi pomiar - koniec
+
+                matrixTest = chrono::duration<double, micro>(end - start).count();
+                sumMatrixTests += chrono::duration<double, micro>(end - start).count();
+
+                cout << "test " << k+1 << "| L: " << listTest << "us  M: " << matrixTest << "us" << endl;
+            }
+
+            cout << "srednia z 50 testow| L: " << sumListTests/50.0 << "us  M: " << sumMatrixTests/50.0 << "us" << endl;
+        }
+    }
+
+    // Testy dla algorytmu Dijkstry
+    cout << "\nTESTY ALGORYTM DIJKSTRY\n";
+    for(int i=20; i<150; i+=20)
+    {
+        cout << "\n=== " << i << " wierzcholkow ===\n";
+        for(int j=0; j<3; j++)
+        {
+            double d=0;
+
+            if(j==0)
+            {
+                d=25;
+            }
+            else if(j==1)
+            {
+                d=50;
+            }
+            else if(j==2)
+            {
+                d=99;
+            }
+            cout << "\n--- gestosc " << d << "% ---\n";
+
+            double sumListTests=0, sumMatrixTests=0;
+
+            for(int k=0; k<50; k++)
+            {
+                double  listTest=0, matrixTest=0;
+
+                testGraphSPA.generateRandom(i, d);
+                int randStart = rand()%i;
+                DijkstraAlgorithm testDijkstra(testGraphSPA, randStart ,0);
+
+                chrono::high_resolution_clock::time_point start, end;
+
+                // Reprezentacja listowa
+                start = chrono::high_resolution_clock::now(); // pierwszy pomiar - start
+                testDijkstra.runList();
+                end = chrono::high_resolution_clock::now(); // drugi pomiar - koniec
+
+                listTest = chrono::duration<double, micro>(end - start).count();
+                sumListTests += chrono::duration<double, micro>(end - start).count();
+
+                // Reprezentacja macierzowa
+                start = chrono::high_resolution_clock::now(); // pierwszy pomiar - start
+                testDijkstra.runMatrix();
+                end = chrono::high_resolution_clock::now(); // drugi pomiar - koniec
+
+                matrixTest = chrono::duration<double, micro>(end - start).count();
+                sumMatrixTests += chrono::duration<double, micro>(end - start).count();
+
+                cout << "test " << k+1 << "| L: " << listTest << "us  M: " << matrixTest << "us" << endl;
+            }
+
+            cout << "srednia z 50 testow| L: " << sumListTests/50 << "us  M: " << sumMatrixTests/50 << "us" << endl;
+        }
+    }
+
+    // Testy dla algorytmu Bellmana-Forda
+    cout << "\nTESTY ALGORYTM BELLMANA-FORDA\n";
+    for(int i=20; i<150; i+=20)
+    {
+        cout << "\n=== " << i << " wierzcholkow ===\n";
+        for(int j=0; j<3; j++)
+        {
+            double d=0;
+
+            if(j==0)
+            {
+                d=25;
+            }
+            else if(j==1)
+            {
+                d=50;
+            }
+            else if(j==2)
+            {
+                d=99;
+            }
+            cout << "\n--- gestosc " << d << "% ---\n";
+
+            double sumListTests=0, sumMatrixTests=0;
+
+            for(int k=0; k<50; k++)
+            {
+                double  listTest=0, matrixTest=0;
+
+                testGraphSPA.generateRandom(i, d);
+                int randStart = rand()%i;
+                BellmanFordAlgorithm testBellmanFord(testGraphSPA, randStart ,0);
+
+                chrono::high_resolution_clock::time_point start, end;
+
+                // Reprezentacja listowa
+                start = chrono::high_resolution_clock::now(); // pierwszy pomiar - start
+                testBellmanFord.runList();
+                end = chrono::high_resolution_clock::now(); // drugi pomiar - koniec
+
+                listTest = chrono::duration<double, micro>(end - start).count();
+                sumListTests += chrono::duration<double, micro>(end - start).count();
+
+                // Reprezentacja macierzowa
+                start = chrono::high_resolution_clock::now(); // pierwszy pomiar - start
+                testBellmanFord.runMatrix();
+                end = chrono::high_resolution_clock::now(); // drugi pomiar - koniec
+
+                matrixTest = chrono::duration<double, micro>(end - start).count();
+                sumMatrixTests += chrono::duration<double, micro>(end - start).count();
+
+                cout << "test " << k+1 << "| L: " << listTest << "us  M: " << matrixTest << "us" << endl;
+            }
+
+            cout << "srednia z 50 testow| L: " << sumListTests/50 << "us  M: " << sumMatrixTests/50 << "us" << endl;
+        }
+    }
+}
 
 void chooseShortestPathMenu()
 {
@@ -252,6 +489,10 @@ void chooseMainMenu()
             chooseShortestPathMenu();
         }
         else if(choice==3)
+        {
+            executeTests();
+        }
+        else if(choice==4)
         {
             break;
         }
