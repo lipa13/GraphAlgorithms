@@ -21,7 +21,7 @@ void executeTests()
 
     // Testy dla algorytmu Prima
     cout << "\nTESTY ALGORYTM PRIMA\n";
-    for(int i=20; i<150; i+=20)
+    for(int i=15; i<110; i+=15)
     {
         cout << "\n=== " << i << " wierzcholkow ===\n";
         for(int j=0; j<3; j++)
@@ -78,7 +78,7 @@ void executeTests()
 
     // Testy dla algorytmu Kruskala
     cout << "\nTESTY ALGORYTM KRUSKALA\n";
-    for(int i=20; i<150; i+=20)
+    for(int i=15; i<110; i+=15)
     {
         cout << "\n=== " << i << " wierzcholkow ===\n";
         for(int j=0; j<3; j++)
@@ -135,7 +135,7 @@ void executeTests()
 
     // Testy dla algorytmu Dijkstry
     cout << "\nTESTY ALGORYTM DIJKSTRY\n";
-    for(int i=20; i<150; i+=20)
+    for(int i=15; i<110; i+=15)
     {
         cout << "\n=== " << i << " wierzcholkow ===\n";
         for(int j=0; j<3; j++)
@@ -193,7 +193,7 @@ void executeTests()
 
     // Testy dla algorytmu Bellmana-Forda
     cout << "\nTESTY ALGORYTM BELLMANA-FORDA\n";
-    for(int i=20; i<150; i+=20)
+    for(int i=15; i<110; i+=15)
     {
         cout << "\n=== " << i << " wierzcholkow ===\n";
         for(int j=0; j<3; j++)
