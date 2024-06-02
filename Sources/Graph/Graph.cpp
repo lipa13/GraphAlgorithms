@@ -15,15 +15,11 @@ bool Graph::isEdgeCorrect(int s, int e)
         return false;
     }
 
-    for(int j=0; j<numV; j++)
+    for(int i=0; i<adjacencyList.numberOfNeighbors[s]; i++)
     {
-        for(int k=0; k<adjacencyList.numberOfNeighbors[j]; k++)
+        if(adjacencyList.data[s][i].endV==e)
         {
-            if((adjacencyList.data[j][k].startV==s && adjacencyList.data[j][k].endV==e) ||
-                (!directed && adjacencyList.data[j][k].startV == e && adjacencyList.data[j][k].endV == s))
-            {
-                return false;
-            }
+            return false;
         }
     }
 
