@@ -64,10 +64,9 @@ HeapNode PriorityQueue::extractMin()
     }
 
     HeapNode root = queue[0];
-    HeapNode lastNode = queue[currentSize-1];
-    queue[0] = lastNode;
-    vPos[lastNode.v] = 0;
-    vPos[root.v]=currentSize-1;
+    swap(queue[0], queue[currentSize-1]);
+    vPos[queue[0].v] = 0;
+    vPos[queue[currentSize-1].v]=currentSize-1;
     currentSize--;
 
     fix_down(0);
