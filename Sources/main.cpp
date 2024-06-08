@@ -14,6 +14,7 @@ Menu menu;
 Graph graphMST(false);
 Graph graphSPA(true);
 
+// metoda odpowiedzialna za przeprowadzenie testów dla każdego algorytmu
 void executeTests()
 {
     Graph testGraphMST(false);
@@ -54,17 +55,17 @@ void executeTests()
                 chrono::high_resolution_clock::time_point start, end;
 
                 // Reprezentacja listowa
-                start = chrono::high_resolution_clock::now(); // pierwszy pomiar - start
+                start = chrono::high_resolution_clock::now(); // pierwszy pomiar
                 testPrim.runList();
-                end = chrono::high_resolution_clock::now(); // drugi pomiar - koniec
+                end = chrono::high_resolution_clock::now(); // drugi pomiar
 
                 listTest = chrono::duration<double, micro>(end - start).count();
                 sumListTests += chrono::duration<double, micro>(end - start).count();
 
                 // Reprezentacja macierzowa
-                start = chrono::high_resolution_clock::now(); // pierwszy pomiar - start
+                start = chrono::high_resolution_clock::now(); // pierwszy pomiar
                 testPrim.runMatrix();
-                end = chrono::high_resolution_clock::now(); // drugi pomiar - koniec
+                end = chrono::high_resolution_clock::now(); // drugi pomiar
 
                 matrixTest = chrono::duration<double, micro>(end - start).count();
                 sumMatrixTests += chrono::duration<double, micro>(end - start).count();
@@ -111,17 +112,17 @@ void executeTests()
                 chrono::high_resolution_clock::time_point start, end;
 
                 // Reprezentacja listowa
-                start = chrono::high_resolution_clock::now(); // pierwszy pomiar - start
+                start = chrono::high_resolution_clock::now(); // pierwszy pomiar
                 testKruskal.runList();
-                end = chrono::high_resolution_clock::now(); // drugi pomiar - koniec
+                end = chrono::high_resolution_clock::now(); // drugi pomiar
 
                 listTest = chrono::duration<double, micro>(end - start).count();
                 sumListTests += chrono::duration<double, micro>(end - start).count();
 
                 // Reprezentacja macierzowa
-                start = chrono::high_resolution_clock::now(); // pierwszy pomiar - start
+                start = chrono::high_resolution_clock::now(); // pierwszy pomiar
                 testKruskal.runMatrix();
-                end = chrono::high_resolution_clock::now(); // drugi pomiar - koniec
+                end = chrono::high_resolution_clock::now(); // drugi pomiar
 
                 matrixTest = chrono::duration<double, micro>(end - start).count();
                 sumMatrixTests += chrono::duration<double, micro>(end - start).count();
@@ -169,17 +170,17 @@ void executeTests()
                 chrono::high_resolution_clock::time_point start, end;
 
                 // Reprezentacja listowa
-                start = chrono::high_resolution_clock::now(); // pierwszy pomiar - start
+                start = chrono::high_resolution_clock::now(); // pierwszy pomiar
                 testDijkstra.runList();
-                end = chrono::high_resolution_clock::now(); // drugi pomiar - koniec
+                end = chrono::high_resolution_clock::now(); // drugi pomiar
 
                 listTest = chrono::duration<double, micro>(end - start).count();
                 sumListTests += chrono::duration<double, micro>(end - start).count();
 
                 // Reprezentacja macierzowa
-                start = chrono::high_resolution_clock::now(); // pierwszy pomiar - start
+                start = chrono::high_resolution_clock::now(); // pierwszy pomiar
                 testDijkstra.runMatrix();
-                end = chrono::high_resolution_clock::now(); // drugi pomiar - koniec
+                end = chrono::high_resolution_clock::now(); // drugi pomiar
 
                 matrixTest = chrono::duration<double, micro>(end - start).count();
                 sumMatrixTests += chrono::duration<double, micro>(end - start).count();
@@ -227,17 +228,17 @@ void executeTests()
                 chrono::high_resolution_clock::time_point start, end;
 
                 // Reprezentacja listowa
-                start = chrono::high_resolution_clock::now(); // pierwszy pomiar - start
+                start = chrono::high_resolution_clock::now(); // pierwszy pomiar
                 testBellmanFord.runList();
-                end = chrono::high_resolution_clock::now(); // drugi pomiar - koniec
+                end = chrono::high_resolution_clock::now(); // drugi pomiar
 
                 listTest = chrono::duration<double, micro>(end - start).count();
                 sumListTests += chrono::duration<double, micro>(end - start).count();
 
                 // Reprezentacja macierzowa
-                start = chrono::high_resolution_clock::now(); // pierwszy pomiar - start
+                start = chrono::high_resolution_clock::now(); // pierwszy pomiar
                 testBellmanFord.runMatrix();
-                end = chrono::high_resolution_clock::now(); // drugi pomiar - koniec
+                end = chrono::high_resolution_clock::now(); // drugi pomiar
 
                 matrixTest = chrono::duration<double, micro>(end - start).count();
                 sumMatrixTests += chrono::duration<double, micro>(end - start).count();
@@ -250,6 +251,7 @@ void executeTests()
     }
 }
 
+// menu akcji dla spa
 void chooseShortestPathMenu()
 {
     do
@@ -368,6 +370,7 @@ void chooseShortestPathMenu()
     }while(true);
 }
 
+// menu akcji dla mst
 void chooseMSTMenu()
 {
     do
@@ -473,6 +476,7 @@ void chooseMSTMenu()
     }while(true);
 }
 
+// menu główne
 void chooseMainMenu()
 {
     do

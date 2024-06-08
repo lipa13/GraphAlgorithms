@@ -1,14 +1,14 @@
 #ifndef AIZO_PROJEKT_2_MENU_H
 #define AIZO_PROJEKT_2_MENU_H
 
-class Menu
+class Menu //
 {
 public:
     Menu();
-    void displayMainMenu();
-    void displayMSTMenu();
-    void displayShortestPathMenu();
-    int getChoice(int n);
+    void displayMainMenu(); // wyświetl menu główne
+    void displayMSTMenu(); // wyświetl menu mst
+    void displayShortestPathMenu(); // wyświetl menu spa
+    int getChoice(int n); // pobierz wybór od użytkownika
 };
 
 #endif //AIZO_PROJEKT_2_MENU_H
