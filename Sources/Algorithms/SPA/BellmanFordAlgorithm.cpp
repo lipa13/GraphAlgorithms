@@ -12,23 +12,23 @@ BellmanFordAlgorithm::BellmanFordAlgorithm(Graph& g, int startV, int target): SP
 
 void BellmanFordAlgorithm::runList()
 {
-    start();
+    start(); // ustawienie wartości początkowych w tablicach
 
-    // Relaksacja krawędzi V-1 razy
+    // relaksacja krawędzi V-1 razy
     for(int i=0; i<numV-1; i++)
     {
         for(int u=0; u<numV; u++)
         {
-            Edge* uNeighbors = graph.adjacencyList.getNeighbors(u);
+            Edge* uNeighbors = graph.adjacencyList.getNeighbors(u); // pobranie sąsiadów z listy
             for(int j=0; j<graph.adjacencyList.numberOfNeighbors[u]; j++)
             {
                 int v = uNeighbors[j].endV;
                 int w = uNeighbors[j].weight;
 
-                if(d[u]!=numeric_limits<int>::max() && d[u]+w<d[v])
+                if(d[u]+w<d[v]) // jeśli v jest w kolejce i nowa ścieżka jest mniejsza od poprzedniej
                 {
-                    d[v] = d[u]+w;
-                    p[v] = u;
+                    d[v] = d[u]+w; // to aktualizujemy ścieżkę dla v
+                    p[v] = u; // i zmieniamy rodzica
                 }
             }
         }
@@ -37,12 +37,12 @@ void BellmanFordAlgorithm::runList()
 
 void BellmanFordAlgorithm::runMatrix()
 {
-    start();
+    start(); // ustawienie wartości początkowych w tablicach
 
-    // Relaksacja krawędzi V-1 razy
+    // relaksacja krawędzi V-1 razy
     for(int i=0; i<numV-1; i++)
     {
-        for(int e=0; e<numE; e++)
+        for(int e=0; e<numE; e++) // pętla pobierająca krawędzie z macierzy i wykonująca relaksację
         {
             int u=-1, v=-1, w=graph.incidenceMatrix.edgeWeights[e];
 
@@ -51,23 +51,25 @@ void BellmanFordAlgorithm::runMatrix()
                 if(graph.incidenceMatrix.data[j][e]==1)
                 {
                     u = j;
+                    if(u!=-1 && v!=-1)
+                    {
+                        break;
+                    }
                 }
                 else if(graph.incidenceMatrix.data[j][e]==-1)
                 {
                     v = j;
-                }
-                if(u!=-1 && v!=-1)
-                {
-                    break;
+                    if(u!=-1 && v!=-1)
+                    {
+                        break;
+                    }
                 }
             }
-            if(u!=-1 && v!=-1)
+
+            if(d[u]+w<d[v])
             {
-                if(d[u]!=numeric_limits<int>::max() && d[u]+w<d[v])
-                {
-                    d[v] = d[u]+w;
-                    p[v] = u;
-                }
+                d[v] = d[u]+w;
+                p[v] = u;
             }
         }
     }
