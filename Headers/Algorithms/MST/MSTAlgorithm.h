@@ -6,11 +6,11 @@
 class MSTAlgorithm: public Algorithm
 {
 protected:
-    int* vParents;
+    int* vParents; // tablica przechowująca rodziców danych wierzchołków
 
 public:
     MSTAlgorithm(Graph& g);
-    virtual void init() = 0;
+    virtual void init() = 0; // inicjalizacja algorytmu
     virtual void runList() override = 0;
     virtual void runMatrix() override = 0;
     virtual void displayResult() override = 0;
