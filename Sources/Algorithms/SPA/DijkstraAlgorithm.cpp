@@ -11,30 +11,32 @@ DijkstraAlgorithm::DijkstraAlgorithm(Graph& g, int startV, int target): SPAlgori
 
 void DijkstraAlgorithm::runList()
 {
-    start();
-    PriorityQueue priorityQueue(numV);
+    start(); // ustawienie wartości początkowych w tablicach
+    PriorityQueue priorityQueue(numV); // inicjalizacja kolejki priorytetowej
 
+    // wypełenienie kolejki wszystkimi wierzchołkami
     for(int v=0; v<numV; v++)
     {
         priorityQueue.insertKey(v, d[v]);
     }
 
+    // pętla wykonująca się dopóki kolejka nie będzie pusta
     while(!priorityQueue.isEmpty())
     {
-        HeapNode minNode = priorityQueue.extractMin();
+        HeapNode minNode = priorityQueue.extractMin(); // wyjęcie minimum z kolejki
         int u = minNode.v;
 
-        Edge* uNeighbors = graph.adjacencyList.getNeighbors(u);
-        for(int i=0; i<graph.adjacencyList.numberOfNeighbors[u]; i++)
+        Edge* uNeighbors = graph.adjacencyList.getNeighbors(u); // pobranie z listy sąsiadów u
+        for(int i=0; i<graph.adjacencyList.numberOfNeighbors[u]; i++) // pętla przechodząca po każdym sąsiedzie u
         {
             int v = uNeighbors[i].endV;
             int w = uNeighbors[i].weight;
 
-            if(priorityQueue.isInQueue(v) && d[u]!=numeric_limits<int>::max() && d[u]+w<d[v])
+            if(priorityQueue.isInQueue(v) && d[u]+w<d[v]) // jeśli v jest w kolejce i nowa ścieżka jest mniejsza od poprzedniej
             {
-                d[v] = d[u]+w;
-                p[v] = u;
-                priorityQueue.decreaseKey(v, d[v]);
+                d[v] = d[u]+w; // to aktualizujemy ścieżkę dla v
+                p[v] = u; // zmieniamy rodzica
+                priorityQueue.decreaseKey(v, d[v]); // i zmieniamy wartość klucza w kolejce
             }
         }
     }
@@ -42,40 +44,42 @@ void DijkstraAlgorithm::runList()
 
 void DijkstraAlgorithm::runMatrix()
 {
-    start();
-    PriorityQueue priorityQueue(numV);
+    start(); // ustawienie wartości początkowych w tablicach
+    PriorityQueue priorityQueue(numV); // inicjalizacja kolejki priorytetowej
 
+    // wypełenienie kolejki wszystkimi wierzchołkami
     for(int v=0; v<numV; v++)
     {
         priorityQueue.insertKey(v, d[v]);
     }
 
+    // pętla wykonująca się dopóki kolejka nie będzie pusta
     while(!priorityQueue.isEmpty())
     {
-        HeapNode minNode = priorityQueue.extractMin();
+        HeapNode minNode = priorityQueue.extractMin(); // wyjęcie minimum z kolejki
         int u = minNode.v;
 
-        for(int e=0; e<numE; e++)
+        for(int e=0; e<numE; e++) // pętla pobierająca sąsiadów dla u z macierzy i wykonujaca algorytm
         {
-            if(graph.incidenceMatrix.data[u][e]==1)
+            if(graph.incidenceMatrix.data[u][e]==1) // jeśli istnieje krawędź dla u
             {
-                int endV = -1;
+                int v = -1;
                 int w = graph.incidenceMatrix.edgeWeights[e];
 
-                for(int i=0; i<graph.getNumV(); i++)
+                for(int i=0; i<graph.getNumV(); i++) // szukamy końca krawędzi
                 {
-                    if(i!=u && graph.incidenceMatrix.data[i][e]==-1)
+                    if(graph.incidenceMatrix.data[i][e]==-1)
                     {
-                        endV = i;
+                        v = i;
                         break;
                     }
                 }
 
-                if(endV!=-1 && d[u]!=numeric_limits<int>::max() && d[u]+w<d[endV])
+                if(priorityQueue.isInQueue(v) && d[u]+w<d[v]) // jeśli v jest w kolejce i nowa ścieżka jest mniejsza od poprzedniej
                 {
-                    d[endV] = d[u]+w;
-                    p[endV] = u;
-                    priorityQueue.decreaseKey(endV, d[endV]);
+                    d[v] = d[u]+w; // to aktualizujemy ścieżkę dla v
+                    p[v] = u; // zmieniamy rodzica
+                    priorityQueue.decreaseKey(v, d[v]); // i zmieniamy wartość klucza w kolejce
                 }
             }
         }
