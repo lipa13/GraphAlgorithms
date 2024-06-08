@@ -7,17 +7,17 @@ class AdjacencyList
 {
 public:
     Edge** data; // dynamiczna tablica dwuwymiarowa reprezentująca listę sąsiedztwa
-    int* numberOfNeighbors;
-    int& numV;
-    bool& directed;
+    int* numberOfNeighbors; // tablica pomocnicza przechowująca liczbę sąsiadów dla każdego wierzchołka
+    int& numV; // liczba wierzchołków grafu
+    bool& directed; // flaga określająca, czy graf jest skierowany
 
     AdjacencyList(int& vertices, bool& isDirected);
-    void initList();
-    void clearList();
+    void initList(); // inicjalizacja listy sąsiedztwa
+    void clearList(); // czyszczenie listy sąsiedztwa
     ~AdjacencyList();
-    void addEdge(int start, int end, int weight);
-    Edge* getNeighbors(int V);
-    void display();
+    void addEdge(int start, int end, int weight); // dodanie krawędzi do listy sąsiedztwa
+    Edge* getNeighbors(int V); // pobranie sąsiadów danego wierzchołka
+    void display(); // wyświetlenie listy sąsiedztwa
 };
 
 #endif //AIZO_PROJEKT_2_ADJACENCYLIST_H

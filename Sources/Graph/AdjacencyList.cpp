@@ -11,6 +11,7 @@ AdjacencyList::AdjacencyList(int& vertices, bool& isDirected) : numV(vertices), 
 
 void AdjacencyList::initList()
 {
+    // inicjalizacja tablic
     data = new Edge*[numV];
     numberOfNeighbors = new int[numV]();
 
@@ -22,6 +23,7 @@ void AdjacencyList::initList()
 
 void AdjacencyList::clearList()
 {
+    // czyszczenie pamięci zajmowanej przez tablice
     for(int i=0; i<numV; i++)
     {
         delete[] data[i];
@@ -40,9 +42,9 @@ AdjacencyList::~AdjacencyList()
 
 void AdjacencyList::addEdge(int start, int end, int weight)
 {
-    data[start][numberOfNeighbors[start]++] = Edge(start, end, weight);
+    data[start][numberOfNeighbors[start]++] = Edge(start, end, weight); // dodanie krawędzi do listy
 
-    if(!directed)
+    if(!directed) // dodanie krawędzi w obie strony dla grafu nieskierowanego
     {
         data[end][numberOfNeighbors[end]++] = Edge(end, start, weight);
     }
@@ -50,7 +52,7 @@ void AdjacencyList::addEdge(int start, int end, int weight)
 
 Edge* AdjacencyList::getNeighbors(int V)
 {
-    return data[V];
+    return data[V]; // pobieranie sąsiadów danego wierzchołka
 }
 
 void AdjacencyList:: display()
