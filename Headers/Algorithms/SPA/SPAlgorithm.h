@@ -6,13 +6,13 @@
 class SPAlgorithm: public Algorithm
 {
 protected:
-    int* d;
-    int* p;
-    int s;
-    int t;
+    int* d; // tablica przechowujaca długośc drogi od wierzchołka startowego do danego wierzchołka
+    int* p; // tablica przechowująca rodziców danych wierzchołków
+    int s; // wierzcholek startowy
+    int t; // wierzchołek końcowy (target)
     void init();
-    void start();
-    void reconstructPath(int target, int*& path, int& pathLength);
+    void start(); // metoda rozpoczynająca algorytm (ustawienia wartosci początkowych)
+    void reconstructPath(int target, int*& path, int& pathLength); // metoda potrzebna do wyświetlenia wyników - odtworzenie ścieżki
 
 public:
     SPAlgorithm(Graph& g, int startV, int target);

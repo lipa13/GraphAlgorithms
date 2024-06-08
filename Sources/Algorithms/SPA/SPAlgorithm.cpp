@@ -22,6 +22,7 @@ void SPAlgorithm::init()
 
 void SPAlgorithm::start()
 {
+    // ustawienie domyślnych wartości w tablicach z wyjątkiem wierzchołka startowego dla którego d wynosi 0
     for(int i=0; i<numV; i++)
     {
         d[i] = numeric_limits<int>::max();
@@ -32,18 +33,18 @@ void SPAlgorithm::start()
 
 void SPAlgorithm::reconstructPath(int target, int*& path, int& pathLength)
 {
-    pathLength = 0;
+    pathLength = 0; // inicjalizacja długości ścieżki
     for(int v=target; v!=-1; v=p[v])
     {
-        pathLength++;
+        pathLength++; // zliczanie długości ścieżki
     }
 
-    path = new int[pathLength];
+    path = new int[pathLength]; // alokacja pamięci dla tablicy przechowującej ścieżkę
 
     int i = pathLength-1;
     for(int v=target; v!=-1; v=p[v])
     {
-        path[i--] = v;
+        path[i--] = v; // wypełnienie tablicy ścieżki
     }
 }
 
