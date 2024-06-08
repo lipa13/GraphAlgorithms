@@ -11,6 +11,7 @@ IncidenceMatrix::IncidenceMatrix(int& vertices, int& edges, bool& isDirected): n
 
 void IncidenceMatrix::initMatrix()
 {
+    // inicjalizacja tablic i wyzerowanie indeksu krawędzi
     data = new int*[numV];
     edgeWeights = new int[numE];
     edgeIndex=0;
@@ -23,6 +24,7 @@ void IncidenceMatrix::initMatrix()
 
 void IncidenceMatrix::clearMatrix()
 {
+    // czyszczenie pamięci zajmowanej przez tablice
     for(int i=0; i<numV; i++)
     {
         delete[] data[i];
@@ -41,6 +43,7 @@ IncidenceMatrix::~IncidenceMatrix()
 
 void IncidenceMatrix::addEdge(int start, int end, int weight)
 {
+    // dodawanie krawędzi do macierzy incydencji
     if(directed)
     {
         data[start][edgeIndex] = 1;
@@ -60,21 +63,21 @@ void IncidenceMatrix::display()
     cout << endl;
     cout << "Reperezentacja macierzowa\n";
 
-    // Wyświetlanie nagłówków kolumn dla krawędzi
-    cout << setw(4) << " "; // Ustawienie szerokości kolumny dla wyrównania
+    // wyświetlenie nagłówków kolumn dla krawędzi
+    cout << setw(4) << " "; // ustawienie szerokości kolumny dla wyrównania
     for(int j=0; j<numE; j++)
     {
         cout << setw(4) << "e" + to_string(j);
     }
     cout << endl;
 
-    // Wyświetlanie wierszy dla wierzchołków
+    // wyświetlenie wierszy dla wierzchołków
     for(int i=0; i<numV; i++)
     {
-        cout << setw(4) << "v" + to_string(i); // Wiersz wierzchołka
+        cout << setw(4) << "v" + to_string(i); // wiersz wierzchołka
         for(int j=0; j<numE; j++)
         {
-            cout << setw(4) << data[i][j]; // Wartości macierzy
+            cout << setw(4) << data[i][j]; // wartości macierzy
         }
         cout << endl;
     }
