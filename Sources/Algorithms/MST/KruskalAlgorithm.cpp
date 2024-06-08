@@ -21,6 +21,7 @@ KruskalAlgorithm::~KruskalAlgorithm()
 
 void KruskalAlgorithm::init()
 {
+    // alokacja pamięci dla tablic
     vParents = new int[numV];
     vRanks = new int[numV];
     edges = new Edge[graph.getNumE()];
@@ -34,27 +35,30 @@ void KruskalAlgorithm::makeSets()
 
     for(int i=0; i<numV; i++)
     {
-        vParents[i] = i;
-        vRanks[i] = 0;
+        vParents[i] = i; // każdy wierzchołek jest swoim własnym rodzicem
+        vRanks[i] = 0; // początkowa ranga każdego wierzchołka to 0
     }
 }
 
 int KruskalAlgorithm::findSet(int u)
 {
+    // znajdowanie korzenia zbioru wierzchołka u z kompresją ścieżki
     if(u!=vParents[u])
     {
-        vParents[u] = findSet(vParents[u]);
+        vParents[u] = findSet(vParents[u]); // rekurencyjne odnalezienie korzenia
     }
     return vParents[u];
 }
 
 void KruskalAlgorithm::unionSets(int u, int v)
 {
+    // łączenie zbiorów wierzchołków u i v
     int rootU = findSet(u);
     int rootV = findSet(v);
 
     if(rootU!=rootV)
     {
+        // łączenie według rang, aby zbalansować drzewo
         if(vRanks[rootU]>vRanks[rootV])
         {
             vParents[rootV] = rootU;
@@ -73,7 +77,7 @@ void KruskalAlgorithm::unionSets(int u, int v)
 
 void KruskalAlgorithm::sortEdges()
 {
-    // Posortowanie wszystkich krawędzi według wagi
+    // posortowanie wszystkich krawędzi według wagi
     for(int i=0; i<edgesSize-1; i++)
     {
         for(int j=0; j<edgesSize-i-1; j++)
@@ -88,7 +92,7 @@ void KruskalAlgorithm::sortEdges()
 
 void KruskalAlgorithm::runKruskal()
 {
-    // Algorytm Kruskala
+    // właściwe dzialanie algorytmu Kruskala
     for(int i=0; i<edgesSize; i++)
     {
         int u = edges[i].startV;
@@ -103,9 +107,9 @@ void KruskalAlgorithm::runKruskal()
 
 void KruskalAlgorithm::runList()
 {
-    makeSets();
+    makeSets(); // inicjalizacja zbiorów jednowierzchołkowych
 
-    // Pobranie wszystkich krawędzi z listy sąsiedztwa
+    // pobranie wszystkich krawędzi z listy sąsiedztwa
     for(int u=0; u<graph.getNumV(); u++)
     {
         Edge* neighbors = graph.adjacencyList.getNeighbors(u);
@@ -118,15 +122,15 @@ void KruskalAlgorithm::runList()
         }
     }
 
-    sortEdges();
-    runKruskal();
+    sortEdges(); // posortowanie krawędzi
+    runKruskal(); // uruchomienie algorytmu kruskala
 }
 
 void KruskalAlgorithm::runMatrix()
 {
-    makeSets();
+    makeSets(); // inicjalizacja zbiorów jednowierzchołkowych
 
-    // Pobranie wszystkich krawędzi z macierzy incydencji
+    // pobranie wszystkich krawędzi z macierzy incydencji
     for(int e=0; e<graph.getNumE(); e++)
     {
         int u=-1, v=-1;
@@ -145,14 +149,12 @@ void KruskalAlgorithm::runMatrix()
                 }
             }
         }
-        if(u!=-1 && v!=-1)
-        {
-            edges[edgesSize++] = Edge(u, v, graph.incidenceMatrix.edgeWeights[e]);
-        }
+
+        edges[edgesSize++] = Edge(u, v, graph.incidenceMatrix.edgeWeights[e]);
     }
 
-    sortEdges();
-    runKruskal();
+    sortEdges(); // posortowanie krawędzi
+    runKruskal(); // uruchomienie algorytmu kruskala
 }
 
 void KruskalAlgorithm::displayResult()
