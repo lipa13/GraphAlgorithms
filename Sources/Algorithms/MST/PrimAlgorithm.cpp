@@ -88,7 +88,7 @@ void PrimAlgorithm::runMatrix()
 
         for(int e=0; e<graph.getNumE(); e++) // pętla przechodząca po wszystkich krawędziach z macierzy incydencji
         {
-            if(graph.incidenceMatrix.data[u][e]==1) // jeśli wartość dla wierzchołka u jest równa 1 (czyli istnieje krawędź dana krawędź dla u)
+            if(graph.incidenceMatrix.data[u][e]==1) // jeśli wartość dla wierzchołka u jest równa 1 (czyli istnieje dana krawędź dla u)
             {
                 int v=-1; // inicjalizujemy wartość końca krawędzi
                 int w = graph.incidenceMatrix.edgeWeights[e]; // pobieramy wagę krawędzi
