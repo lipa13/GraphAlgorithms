@@ -12,9 +12,9 @@ protected:
 
 public:
     Algorithm(Graph& g);
-    virtual void runList() = 0;
-    virtual void runMatrix() = 0;
-    virtual void displayResult() = 0;
+    virtual void runList() = 0; // uruchom algorytm dla reprezentacji listowej
+    virtual void runMatrix() = 0; // uruchom algorytm dla reprezentacji macierzowej
+    virtual void displayResult() = 0; // wyświetl wyniki
 };
 
 #endif //AIZO_PROJEKT_2_ALGORITHM_H
