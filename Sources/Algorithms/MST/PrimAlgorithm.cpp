@@ -88,26 +88,26 @@ void PrimAlgorithm::runMatrix()
 
         for(int e=0; e<graph.getNumE(); e++) // pętla przechodząca po wszystkich krawędziach z macierzy incydencji
         {
-            if(graph.incidenceMatrix.data[u][e]==1) // jeśli wartość dla wierzchołka u jest równa 1 (czyli isitnieje krawędź dana krawędź dla u)
+            if(graph.incidenceMatrix.data[u][e]==1) // jeśli wartość dla wierzchołka u jest równa 1 (czyli istnieje krawędź dana krawędź dla u)
             {
-                int endV=-1; // inicjalizujemy wartość końca krawędzi
+                int v=-1; // inicjalizujemy wartość końca krawędzi
                 int w = graph.incidenceMatrix.edgeWeights[e]; // pobieramy wagę krawędzi
 
                 for(int i=0; i<numV; i++) // szukamy końca krawędzi
                 {
                     if(i!=u && graph.incidenceMatrix.data[i][e]==1) // jak go znaleźliśmy to aktualizujemy zmienną i kończymy pętlę
                     {
-                        endV = i;
+                        v = i;
                         break;
                     }
                 }
 
-                if(priorityQueue.isInQueue(endV) && w<key[endV]) // jeśli zmieniliśmy wartośc końca i endV jest w kolejce
+                if(priorityQueue.isInQueue(v) && w<key[v]) // jeśli zmieniliśmy wartośc końca i v jest w kolejce
                 {
-                    // to zmieniamy wartości klucza i rodzica dla endV i aktualizujemy jego pozycję w kolejce
-                    key[endV] = w;
-                    vParents[endV] = u;
-                    priorityQueue.decreaseKey(endV, w);
+                    // to zmieniamy wartości klucza i rodzica dla v i aktualizujemy jego pozycję w kolejce
+                    key[v] = w;
+                    vParents[v] = u;
+                    priorityQueue.decreaseKey(v, w);
                 }
             }
         }
