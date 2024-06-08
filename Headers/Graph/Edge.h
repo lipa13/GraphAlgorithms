@@ -4,9 +4,9 @@
 class Edge
 {
 public:
-    int startV;
-    int endV;
-    int weight;
+    int startV; // wierzchołek początkowy krawędzi
+    int endV; // wierzchołek końcowy krawędzi
+    int weight; // waga krawędzi
 
     Edge();
     Edge(int start, int end, int w);
