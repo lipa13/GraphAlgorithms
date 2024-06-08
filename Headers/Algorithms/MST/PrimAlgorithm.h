@@ -7,10 +7,10 @@
 class PrimAlgorithm : public MSTAlgorithm
 {
 private:
-    int* key;
+    int* key; // tablica przechowująca klucze danych wierzchołków
     int r; // wierzchołek startowy
     void init() override;
-    void start();
+    void start(); // metoda rozpoczynająca algorytm (ustawienia wartosci początkowych)
 
 public:
     PrimAlgorithm(Graph& g);

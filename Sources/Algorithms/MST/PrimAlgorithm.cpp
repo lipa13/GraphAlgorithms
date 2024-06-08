@@ -10,7 +10,7 @@ void PrimAlgorithm::init()
 {
     vParents = new int[numV];
     key = new int[numV];
-    r = rand()%numV;
+    r = rand()%numV; // wylosowanie wierzchołka startowego
 }
 
 PrimAlgorithm::PrimAlgorithm(Graph& g) : MSTAlgorithm(g)
@@ -26,6 +26,7 @@ PrimAlgorithm::~PrimAlgorithm()
 
 void PrimAlgorithm::start()
 {
+    // ustawienie domyślnych wartości w tablicach z wyjątkiem wierzchołka startowego dla którego key wynosi 0
     for(int i=0; i<numV; i++)
     {
         vParents[i] = -1;
@@ -36,27 +37,30 @@ void PrimAlgorithm::start()
 
 void PrimAlgorithm::runList()
 {
-    start();
-    PriorityQueue priorityQueue(numV);
+    start(); // ustawienie początkowych wartości
+    PriorityQueue priorityQueue(numV); // inicjalizacja kolejki priorytetowej
 
+    // wstawienie wszystkich wierzchołków do kolejki priorytetowej
     for(int v=0; v<numV; v++)
     {
         priorityQueue.insertKey(v, key[v]);
     }
 
+    // pętla wykonujaca się dopóki kolejka nie będzie pusta
     while(!priorityQueue.isEmpty())
     {
-        HeapNode minNode = priorityQueue.extractMin();
-        int u = minNode.v;
+        HeapNode minNode = priorityQueue.extractMin(); // pobranie minimum z kolejki
+        int u = minNode.v; // zapisanie w zmiennej wierzchołka z minimum
 
-        Edge* uNeighbors = graph.adjacencyList.getNeighbors(u);
-        for(int i=0; i<graph.adjacencyList.numberOfNeighbors[u]; i++)
+        Edge* uNeighbors = graph.adjacencyList.getNeighbors(u); // pobranie sąsiadów u
+        for(int i=0; i<graph.adjacencyList.numberOfNeighbors[u]; i++) // pętla przechodząca przez wszystkich sasiadów u
         {
-            int v = uNeighbors[i].endV;
-            int w = uNeighbors[i].weight;
+            int v = uNeighbors[i].endV; // zapisanie do zmiennej wierzchołka sąsiadującego
+            int w = uNeighbors[i].weight; // zapisanine wagi krawędzi
 
-            if(priorityQueue.isInQueue(v) && w<key[v])
+            if(priorityQueue.isInQueue(v) && w<key[v]) // jeśli w<key[v] i v jest w kolejce
             {
+                // to zmieniamy wartości klucza i rodzica dla v i aktualizujemy jego pozycję w kolejce
                 key[v] = w;
                 vParents[v] = u;
                 priorityQueue.decreaseKey(v, w);
@@ -67,37 +71,40 @@ void PrimAlgorithm::runList()
 
 void PrimAlgorithm::runMatrix()
 {
-    start();
-    PriorityQueue priorityQueue(numV);
+    start(); // ustawienie początkowych wartości
+    PriorityQueue priorityQueue(numV); // inicjalizacja kolejki priorytetowej
 
+    // wstawienie wszystkich wierzchołków do kolejki priorytetowej
     for(int v=0; v<numV; v++)
     {
         priorityQueue.insertKey(v, key[v]);
     }
 
+    // pętla wykonujaca się dopóki kolejka nie będzie pusta
     while(!priorityQueue.isEmpty())
     {
-        HeapNode minNode = priorityQueue.extractMin();
-        int u = minNode.v;
+        HeapNode minNode = priorityQueue.extractMin(); // pobranie minimum z kolejki
+        int u = minNode.v; // zapisanie w zmiennej wierzchołka z minimum
 
-        for(int e=0; e<graph.getNumE(); e++)
+        for(int e=0; e<graph.getNumE(); e++) // pętla przechodząca po wszystkich krawędziach z macierzy incydencji
         {
-            if(graph.incidenceMatrix.data[u][e]==1)
+            if(graph.incidenceMatrix.data[u][e]==1) // jeśli wartość dla wierzchołka u jest równa 1 (czyli isitnieje krawędź dana krawędź dla u)
             {
-                int endV=-1;
-                int w = graph.incidenceMatrix.edgeWeights[e];
+                int endV=-1; // inicjalizujemy wartość końca krawędzi
+                int w = graph.incidenceMatrix.edgeWeights[e]; // pobieramy wagę krawędzi
 
-                for(int i=0; i<numV; i++)
+                for(int i=0; i<numV; i++) // szukamy końca krawędzi
                 {
-                    if(i!=u && graph.incidenceMatrix.data[i][e]==1)
+                    if(i!=u && graph.incidenceMatrix.data[i][e]==1) // jak go znaleźliśmy to aktualizujemy zmienną i kończymy pętlę
                     {
                         endV = i;
                         break;
                     }
                 }
 
-                if(endV!=-1 && priorityQueue.isInQueue(endV) && w<key[endV])
+                if(priorityQueue.isInQueue(endV) && w<key[endV]) // jeśli zmieniliśmy wartośc końca i endV jest w kolejce
                 {
+                    // to zmieniamy wartości klucza i rodzica dla endV i aktualizujemy jego pozycję w kolejce
                     key[endV] = w;
                     vParents[endV] = u;
                     priorityQueue.decreaseKey(endV, w);

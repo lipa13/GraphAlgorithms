@@ -10,7 +10,7 @@ protected:
 
 public:
     MSTAlgorithm(Graph& g);
-    virtual void init() = 0; // inicjalizacja algorytmu
+    virtual void init() = 0; // inicjalizacja tablic użytych w algorytmie
     virtual void runList() override = 0;
     virtual void runMatrix() override = 0;
     virtual void displayResult() override = 0;
