@@ -17,15 +17,15 @@ void BellmanFordAlgorithm::runList()
     // relaksacja krawędzi V-1 razy
     for(int i=0; i<numV-1; i++)
     {
-        for(int u=0; u<numV; u++)
+        for(int u=0; u<numV; u++) // pobieranie wszystkich krawędzi z listy
         {
-            Edge* uNeighbors = graph.adjacencyList.getNeighbors(u); // pobranie sąsiadów z listy
+            Edge* uNeighbors = graph.adjacencyList.getNeighbors(u);
             for(int j=0; j<graph.adjacencyList.numberOfNeighbors[u]; j++)
             {
                 int v = uNeighbors[j].endV;
                 int w = uNeighbors[j].weight;
 
-                if(d[u]+w<d[v]) // jeśli v jest w kolejce i nowa ścieżka jest mniejsza od poprzedniej
+                if(d[u]!=numeric_limits<int>::max() && d[u]+w<d[v]) // jeśli  nowa ścieżka jest mniejsza od poprzedniej
                 {
                     d[v] = d[u]+w; // to aktualizujemy ścieżkę dla v
                     p[v] = u; // i zmieniamy rodzica
@@ -42,21 +42,21 @@ void BellmanFordAlgorithm::runMatrix()
     // relaksacja krawędzi V-1 razy
     for(int i=0; i<numV-1; i++)
     {
-        for(int e=0; e<numE; e++) // pętla pobierająca krawędzie z macierzy i wykonująca relaksację
+        for(int e=0; e<numE; e++) // pobieranie krawędzi z macierzy
         {
             int u=-1, v=-1, w=graph.incidenceMatrix.edgeWeights[e];
 
             for(int j=0; j<numV; j++)
             {
-                if(graph.incidenceMatrix.data[j][e]==1)
+                if(graph.incidenceMatrix.data[j][e]==1) // jeśli == 1 to początek krawędzi
                 {
                     u = j;
-                    if(u!=-1 && v!=-1)
+                    if(u!=-1 && v!=-1) // jeśli obie wartości zostały już pobrane to nie ma sensu kontynuować pętli
                     {
                         break;
                     }
                 }
-                else if(graph.incidenceMatrix.data[j][e]==-1)
+                else if(graph.incidenceMatrix.data[j][e]==-1) // jeśli == -1 to koniec krawędzi
                 {
                     v = j;
                     if(u!=-1 && v!=-1)
@@ -65,11 +65,10 @@ void BellmanFordAlgorithm::runMatrix()
                     }
                 }
             }
-
-            if(d[u]+w<d[v])
+            if(d[u]!=numeric_limits<int>::max() && d[u]+w<d[v]) // jeśli  nowa ścieżka jest mniejsza od poprzedniej
             {
-                d[v] = d[u]+w;
-                p[v] = u;
+                d[v] = d[u]+w; // to aktualizujemy ścieżkę dla v
+                p[v] = u; // i zmieniamy rodzica
             }
         }
     }
