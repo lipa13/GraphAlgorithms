@@ -149,7 +149,6 @@ void KruskalAlgorithm::runMatrix()
                 }
             }
         }
-
         edges[edgesSize++] = Edge(u, v, graph.incidenceMatrix.edgeWeights[e]);
     }
 
