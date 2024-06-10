@@ -78,16 +78,10 @@ void KruskalAlgorithm::unionSets(int u, int v)
 void KruskalAlgorithm::sortEdges()
 {
     // posortowanie wszystkich krawędzi według wagi
-    for(int i=0; i<edgesSize-1; i++)
+    sort(edges, edges + edgesSize, [](const Edge& a, const Edge& b)
     {
-        for(int j=0; j<edgesSize-i-1; j++)
-        {
-            if(edges[j].weight>edges[j+1].weight)
-            {
-                swap(edges[j], edges[j+1]);
-            }
-        }
-    }
+        return a.weight < b.weight;
+    });
 }
 
 void KruskalAlgorithm::runKruskal()
